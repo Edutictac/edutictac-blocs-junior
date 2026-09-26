@@ -16,12 +16,13 @@ let frame;
 // window.Settings.useStoryStarters
 
 export default class Samples {
-    static init () {
+    static init (key) {
         frame = gn('htmlcontents');
         gn('tabicon').onmousedown = Samples.playHowTo;
+        // junior: 'samples' (exemples) o 'challenges' (reptes); la graella sempre te id 'samples'
         var div = newHTML('div', 'samples off', frame);
         div.setAttribute('id', 'samples');
-        Samples.display('samples');
+        Samples.display(key);
     }
 
     ////////////////////////////
@@ -41,7 +42,13 @@ export default class Samples {
 
     static display (key) {
         var files = MediaLib[key];
-        var div = gn(key);
+        var div = gn('samples');
+        try {
+            // l'editor ho usa per a tornar a la mateixa pestanya
+            sessionStorage.setItem('juniorGallery', key == 'challenges' ? 'reptes' : 'help');
+        } catch (e) {
+            // sense sessionStorage tornem a Exemples
+        }
         for (var i = 0; i < files.length; i++) {
             Samples.addLink(div, i, files[i]);
             Samples.requestFromServer(i, files[i], displayThumb);

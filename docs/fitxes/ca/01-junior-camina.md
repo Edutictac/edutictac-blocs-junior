@@ -1,8 +1,12 @@
+---
+plantilla: samples/JuniorWalks.txt
+---
+
 # Fitxa docent 1 — Junior camina
 
 | | |
 |---|---|
-| **Plantilla** | «1. Junior camina» (galeria de mostres) |
+| **Plantilla** | «1. Junior camina» (pestanya **Reptes**) |
 | **Edat orientativa** | 5-7 anys (Infantil 5 anys, 1r i 2n de Primària) |
 | **Durada** | 30-45 minuts |
 | **Agrupament** | Per parelles: una persona mou els blocs i l'altra conta els passos; canvien a meitat sessió |
@@ -39,7 +43,7 @@ L'alumnat descobreix que:
 
 1. **Inici (5 min).** Juguem sense pantalla: una alumna fa de Junior i la resta li donem
    ordres («avança 1 pas», «avança 3 passos»). Només es mou quan diem «bandera verda!».
-2. **Obrir la plantilla (5 min).** Galeria de mostres → «1. Junior camina». Premem la
+2. **Obrir la plantilla (5 min).** Pestanya **Reptes** (la bandera verda de dalt) → «1. Junior camina». Premem la
    bandera: no passa res. Per què? Junior no té cap ordre després de la bandera.
 3. **Exploració (10-15 min).** Arrossegar el bloc **Avant** i encaixar-lo a la dreta de
    la bandera. Provar amb el número 1 i observar quant avança. Canviar el número i tornar

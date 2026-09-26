@@ -1,12 +1,14 @@
 {
     "path": "./svglibrary/",
-    "samples": [
+    "challenges": [
         "samples/JuniorWalks.txt",
         "samples/JuniorDances.txt",
         "samples/JuniorMaze.txt",
         "samples/JuniorIntro.txt",
         "samples/JuniorStory.txt",
-        "samples/JuniorRace.txt",
+        "samples/JuniorRace.txt"
+    ],
+    "samples": [
         "samples/Underthesea.txt",
         "samples/Farm.txt",
         "samples/Seasons.txt",

@@ -55,6 +55,11 @@ export default class Lobby {
                 Lobby.setPage('help');
             }
         };
+        gn('reptestab').onmousedown = function () {
+            if (gn('reptestab').className != 'reptes on') {
+                Lobby.setPage('reptes');
+            }
+        };
         gn('booktab').onmousedown = function () {
             if (gn('booktab').className != 'book on') {
                 Lobby.setPage('book');
@@ -124,6 +129,11 @@ export default class Lobby {
             ScratchAudio.sndFX('tap.wav');
             Lobby.loadSamples(div);
             break;
+        case 'reptes':
+            busy = true;
+            ScratchAudio.sndFX('tap.wav');
+            Lobby.loadChallenges(div);
+            break;
         case 'book':
             Lobby.loadGuide(div);
             break;
@@ -150,6 +160,25 @@ export default class Lobby {
         Home.init();
     }
 
+    // junior: pestanya Reptes (plantilles docents) amb enllac a les fitxes del professorat
+    static loadChallenges (p) {
+        gn('topsection').className = 'topsection help reptes';
+        gn('tabheader').textContent = Localization.localize('CHALLENGES');
+        gn('subtitle').textContent = Localization.localize('CHALLENGES_SUBTITLE');
+        var link = gn('teacherlink');
+        link.textContent = Localization.localize('FOR_TEACHERS');
+        link.href = 'fitxes/' + (Localization.currentLocale == 'es' ? 'es' : 'ca') + '/index.html';
+        link.onmousedown = function (e) {
+            e.stopPropagation();
+        };
+        gn('footer').className = 'footer off';
+        gn('wrapc').scrollTop = 0;
+        gn('wrapc').className = 'contentwrap noscroll';
+        var div = newHTML('div', 'htmlcontents help reptes', p);
+        div.setAttribute('id', 'htmlcontents');
+        Samples.init('challenges');
+    }
+
     static loadSamples (p) {
         gn('topsection').className = 'topsection help';
         gn('tabheader').textContent = Localization.localize('QUICK_INTRO');
@@ -162,7 +191,7 @@ export default class Lobby {
         document.onmousemove = function (e) {
             e.preventDefault();
         };
-        Samples.init();
+        Samples.init('samples');
     }
 
     static loadGuide (p) {
@@ -264,7 +293,7 @@ export default class Lobby {
     }
 
     static selectButton (str) {
-        var list = ['home', 'help', 'book', 'gear'];
+        var list = ['home', 'help', 'reptes', 'book', 'gear'];
         for (var i = 0; i < list.length; i++) {
             if (str == list[i]) {
                 gn(list[i] + 'tab').className = list[i] + ' on';

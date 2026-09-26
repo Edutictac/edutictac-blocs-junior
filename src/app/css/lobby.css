@@ -38,7 +38,7 @@ div.frame {
     display: inline-block;
     list-style-type: none;
     margin: 0px;
-    width: ${css_vh(78.13)};
+    width: ${css_vh(95)}; /* junior: +pestanya Reptes */
     position: absolute;
     left: 0px;
 }
@@ -108,6 +108,24 @@ div.frame {
     padding: 0;
     margin: auto auto;
 }
+
+/* junior: pestanya Reptes */
+#topbar ul.topbar-nav li.reptes {
+    width: ${css_vh(16)};
+}
+
+#topbar ul.topbar-nav .reptes .reptes-icon {
+    display: block;
+    width: ${css_vh(12.63)};
+    height: ${css_vh(10.03)};
+    background: url('../assets/lobby/reptes.svg');
+    background-size: 101%;
+    padding: 0;
+    margin: auto auto;
+}
+
+#topbar ul.topbar-nav .reptes.on{background: #2b8a3e; height: ${css_vh(10.81)};}
+#topbar ul.topbar-nav .reptes.off{background: none; height: auto;}
 
 #topbar ul.topbar-nav .home.on{background: #F9A737; height: ${css_vh(10.81)};}
 #topbar ul.topbar-nav .home.off{background: none; height: auto;}
@@ -283,6 +301,36 @@ ul#settings.reference {
     height: ${css_vh(19.5)};
     background: url('../assets/lobby/movielaunch.svg') no-repeat left top;
     background-size: 100%;
+}
+
+/* junior: pestanya Reptes (reutilitza la maquetacio d'Exemples, sense video) */
+.topsection.help.reptes > div.tabtitle,
+.topsection.help.reptes > div.blueband {
+    background: #2b8a3e;
+    text-shadow: 0 2px #1d5e2a;
+}
+.topsection.help.reptes > div.blueband > span {text-shadow: 0 2px #1d5e2a;}
+.topsection.help.reptes > div.tabicon {display: none;}
+.topsection > div.blueband { position: relative; }
+.teacherlink {display: none;}
+.topsection.reptes .teacherlink {
+    display: block;
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: ${css_vh(0.6)} ${css_vh(2)};
+    border-radius: ${css_vh(3)};
+    background: #fff;
+    color: #2b8a3e;
+    font-size: ${css_vh(2.4)};
+    text-shadow: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+.htmlcontents.help.reptes .samples {
+    top: 15%;
+    height: 84%;
 }
 
 /* Localization menu */

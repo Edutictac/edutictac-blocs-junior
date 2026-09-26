@@ -3,6 +3,7 @@ import Localization from '../utils/Localization';
 
 let path;
 let samples;
+let challenges; // junior: plantilles de la pestanya Reptes
 let backgrounds;
 let sprites;
 let sounds;
@@ -15,6 +16,10 @@ export default class MediaLib {
 
     static get samples () {
         return samples;
+    }
+
+    static get challenges () {
+        return challenges;
     }
 
     static get sprites () {
@@ -38,6 +43,7 @@ export default class MediaLib {
             let parsedResult = JSON.parse(result);
             path = parsedResult.path;
             samples = parsedResult.samples;
+            challenges = parsedResult.challenges || [];
             sprites = parsedResult.sprites;
             backgrounds = parsedResult.backgrounds;
             sounds = parsedResult.sounds;

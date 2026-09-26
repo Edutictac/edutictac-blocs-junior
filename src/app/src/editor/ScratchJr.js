@@ -395,10 +395,21 @@ export default class ScratchJr {
         iOS.gotoPage(ScratchJr.getGotoLink()); // junior: espera el desat
     }
 
+    // junior: la galeria (Exemples o Reptes) des d'on s'ha obert la plantilla
+    static galleryLink () {
+        var place = 'help';
+        try {
+            place = sessionStorage.getItem('juniorGallery') || 'help';
+        } catch (e) {
+            // sense sessionStorage
+        }
+        return 'home.html?place=' + place;
+    }
+
     static getGotoLink () {
         if (editmode == 'storyStarter') {
             if (!storyStarted) {
-                return 'home.html?place=help';
+                return ScratchJr.galleryLink();
             } else {
                 return 'home.html?place=home';
             }
@@ -409,7 +420,7 @@ export default class ScratchJr {
         }
 
         if (Project.metadata.gallery == 'samples') {
-            return 'home.html?place=help';
+            return ScratchJr.galleryLink();
         } else {
             return 'home.html?place=home&timestamp=' + new Date().getTime();
         }

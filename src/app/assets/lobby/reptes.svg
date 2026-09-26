@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="97" height="77" viewBox="0 0 97 77">
+  <!-- junior: icona de la pestanya Reptes (bandera de meta) -->
+  <g transform="translate(2 3)" opacity="0.2"><path d="M34 14v52" stroke="#000" stroke-width="6" stroke-linecap="round"/><path d="M36 14h30l-7 11 7 11H36z"/></g>
+  <path d="M34 14v52" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+  <path d="M36 14h30l-7 11 7 11H36z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M34 14v52" stroke="#8a5a1c" stroke-width="5" stroke-linecap="round"/>
+  <path d="M36 14h30l-7 11 7 11H36z" fill="#2b8a3e"/>
+  <path d="M44 20l2 4.2 4.6.6-3.4 3.2.9 4.5-4.1-2.2-4.1 2.2.9-4.5-3.4-3.2 4.6-.6z" fill="#ffd43b"/>
+</svg>

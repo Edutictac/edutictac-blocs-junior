@@ -2,7 +2,8 @@ node_modules
 dist
 .git
 .gitignore
-docs
+docs/*
+!docs/fitxes
 tests
 Dockerfile
 docker-compose.yml
