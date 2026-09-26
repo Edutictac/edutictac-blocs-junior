@@ -29,7 +29,8 @@ import {
   writeProjectFile,
   removeProjectFile,
   cleanProjectFiles,
-  initDb
+  initDb,
+  saveNow
 } from './storage/db.js';
 
 function syncGetText(url) {
@@ -1043,6 +1044,8 @@ class CameraPickerDialog {
 async function startTabletInterface() {
   await initDb();
   window.tablet = new ElectronDesktopInterface();
+  // Buida la base de dades a IndexedDB abans de canviar de pagina (vegeu iOS.gotoPage).
+  window.tablet.flushStorage = saveNow;
   window.__blocsJuniorReady = true;
 }
 

@@ -373,6 +373,19 @@ export default class iOS {
 
     // Web Wiew delegate call backs
 
+    // junior: la base de dades es desa a IndexedDB amb retard; navegar just despres d'escriure
+    // pot perdre els canvis (beforeunload no espera promeses). Esperem el desat i despres naveguem.
+    static gotoPage (url) {
+        var go = function () {
+            window.location.href = url;
+        };
+        if (tabletInterface && tabletInterface.flushStorage) {
+            tabletInterface.flushStorage().then(go, go);
+        } else {
+            go();
+        }
+    }
+
     static pageError (desc) {
         console.log('XCODE ERROR:', desc); // eslint-disable-line no-console
         if (window.location.href.indexOf('home.html') > -1) {

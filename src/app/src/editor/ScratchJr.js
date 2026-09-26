@@ -361,6 +361,9 @@ export default class ScratchJr {
                     currentProject = md5;
                     // Switch out of story-starter mode to avoid creating new projects
                     editmode = 'edit';
+                    // junior: com a UI.handleTextFieldSave; si no, la copia torna a l'ajuda i no a "Els meus projectes"
+                    Project.metadata.id = md5;
+                    Project.metadata.gallery = '';
                     Project.prepareToSave(currentProject, onDone);
                 });
             }, true);
@@ -389,7 +392,7 @@ export default class ScratchJr {
     }
 
     static switchPage () {
-        window.location.href = ScratchJr.getGotoLink();
+        iOS.gotoPage(ScratchJr.getGotoLink()); // junior: espera el desat
     }
 
     static getGotoLink () {
