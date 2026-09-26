@@ -1,7 +1,9 @@
-// Service worker basic d'EduTicTac Blocs Junior (junior).
-// Objectiu: que l'aplicacio arranque sense xarxa despres de la primera visita.
-// Canviar CACHE quan canvie la versio de l'aplicacio.
-const CACHE = 'blocsjunior-v0.1.0';
+// Service worker d'EduTicTac Blocs Junior (junior).
+// Estrategia: network-first per a tot el mateix origen, amb fallback a cau.
+// Aixi, quan hi ha xarxa sempre s'obte la versio desplegada mes recent i,
+// quan no n'hi ha, l'aplicacio continua funcionant des de la cau.
+// Canviar CACHE quan es vulga invalidar forcadament tota la cau.
+const CACHE = 'blocsjunior-v0.1.1';
 const CORE = [
   './',
   'index.html',
@@ -37,15 +39,12 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
 
   event.respondWith(
-    caches.match(request).then((hit) => {
-      if (hit) return hit;
-      return fetch(request).then((response) => {
-        if (response && response.status === 200 && response.type === 'basic') {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put(request, copy));
-        }
-        return response;
-      }).catch(() => caches.match('home.html'));
-    })
+    fetch(request).then((response) => {
+      if (response && response.status === 200 && response.type === 'basic') {
+        const copy = response.clone();
+        caches.open(CACHE).then((cache) => cache.put(request, copy));
+      }
+      return response;
+    }).catch(() => caches.match(request).then((hit) => hit || caches.match('home.html')))
   );
 });
