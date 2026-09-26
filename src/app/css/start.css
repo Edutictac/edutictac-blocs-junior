@@ -341,3 +341,9 @@ div.frame {
     text-align: right;
 }
 
+
+/* junior: de-branding de la portada. Amaguem els credits i les mascotes de
+   ScratchJr; la identitat propia es mostra amb .jrlogo (logotip EduTicTac). */
+.credits, .creditsText, .purple, .red, .blue, .catlogo, .catface {
+    display: none !important;
+}

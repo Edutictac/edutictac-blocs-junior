@@ -7,14 +7,18 @@
     top: ${css_vh(0.13)};
     left: ${css_vh(1.69)};
     background:  url('../assets/ui/fliplogo.svg');
-    background-size: 100.5%; /* webview pixelates the image unless we do this */
+    background-size: contain; /* junior: evita deformar el logotip */
+    background-repeat: no-repeat;
+    background-position: center center;
     width: ${css_vh(29.95)};
     height: ${css_vh(8.20)};
 }
 
 .flipme:active {
     background:  url('../assets/ui/fliplogoPressed.svg');
-    background-size: 100.5%;  /* webview pixelates the image unless we do this */
+    background-size: contain;  /* junior: evita deformar el logotip */
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .scrollbar {

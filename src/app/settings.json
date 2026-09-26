@@ -21,17 +21,7 @@
     "defaultLocaleShort": "ca",
     "supportedLocales": {
         "Català": "ca",
-        "Deutsch": "de",
-        "English": "en",
-        "Español": "es",
-        "Français": "fr",
-        "Italiano": "it",
-        "Nederlands": "nl",
-        "日本語": "ja",
-        "Português": "pt",
-        "Svenska": "sv",
-        "ไทย": "th",
-        "简体中文": "zh-cn"
+        "Español": "es"
     },
     "settingsPageDisabled": false
 }

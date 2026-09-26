@@ -50,7 +50,8 @@ Components de tercers i les seues llicències:
     - JSZip ........................... MIT OR GPL-3.0-or-later
     - sql.js .......................... MIT
     - Font Roboto ..................... Apache-2.0
+    - Font DejaVu Sans ................ Bitstream Vera / Arev (lliure)
 
-Nota legal pendent d'auditoria: la font Verdana present als assets originals
-("test fonts from Microsoft for use in ScratchJr only. Pending full license agreement")
-NO es redistribueix en aquest projecte. S'ha substituït per una font lliure.
+Nota: la font Verdana present als assets originals de ScratchJr ("test fonts from
+Microsoft for use in ScratchJr only. Pending full license agreement") NO es redistribueix.
+S'ha substituit per DejaVu Sans (llicencia lliure).

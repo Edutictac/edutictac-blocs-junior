@@ -83,9 +83,9 @@ Els ports inclouen aquest text, que convé reproduir al `NOTICE`/README:
   > «These are test fonts from Microsoft for use in ScratchJr only. Pending full license
   > agreement.»
 
-  → **NO es poden redistribuir** fora del context permés. **Mesura:** substituir Verdana per
-  una font lliure mètricament compatible (p. ex. **DejaVu Sans** o **Liberation Sans**) o
-  usar Roboto/una altra lliure, i eliminar els `.ttf` del repo.
+  → **NO es poden redistribuir** fora del context permés. **Mesura aplicada:** Verdana s'ha
+  eliminat del repositori i se substitueix per **DejaVu Sans** (llicència lliure,
+  Bitstream Vera / Arev), apuntant el `@font-face` de `font.css` als fitxers de DejaVu.
 
 - **Sprites/fons/sons:** la propietat depén de l'autor. Alguns elements són de marca
   (gat, logos) i queden prohibits per l'apartat 3. Cal **auditar un per un** els assets de
@@ -130,12 +130,16 @@ documentarà a `docs/privacy.md`.
 ## 7. Checklist abans de publicar el repo
 
 1. [x] Afegir `LICENSE` (AGPL-3.0) i `NOTICE` (BSD-3-Clause de MIT + atribucions).
-2. [ ] Eliminar la font **Verdana** i els `.ttf` associats; substituir per una lliure.
-3. [ ] De-branding complet: fora «ScratchJr», gat, logos i noms de marca.
+2. [x] Eliminar la font **Verdana** i els `.ttf` associats; substituir per DejaVu Sans.
+3. [ ] De-branding complet: identitat pròpia feta (nom, logos, portada, lobby, editor i
+   «Sobre el projecte»); queden pendents els sprites/personatges de la biblioteca i el
+   contingut dels projectes de mostra.
 4. [ ] Auditar autoria de `svglibrary`, `pnglibrary`, `sounds`, `samples`.
-5. [ ] Traure `analyticsEvent`, `appUsage` i qualsevol resta de Firebase.
-6. [ ] Traure l'id d'Amazon S3 del projecte de mostra incrustat (codju `IO.js:199`).
-7. [ ] Traure `mock-fs` de dependències de producció.
-8. [ ] Documentar llicències de tercers i versions.
+5. [x] Traure `analyticsEvent`, `appUsage` i qualsevol resta de Firebase (enquesta d'ús
+   desactivada; el video introductori de ScratchJr eliminat).
+6. [ ] Traure l'id d'Amazon S3 del projecte de mostra incrustat (no s'hereta del codju; els
+   samples propis no en tenen).
+7. [x] Traure `mock-fs` de dependències de producció (no s'ha incorporat).
+8. [ ] Documentar llicències de tercers i versions (en curs).
 
 <!-- updated: 2026-09-26 -->

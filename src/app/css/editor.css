@@ -758,8 +758,10 @@ form.projectname {
     left: ${css_vh(43.23)};
     width: ${css_vh(46.75)};
     height: ${css_vh(16.67)};
-    background: url('../assets/pinfologo.png');
-    background-size: 100%;
+    background: url('../assets/brand/logo-badge.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
     margin-left: auto;
     margin-right: auto;
 }
