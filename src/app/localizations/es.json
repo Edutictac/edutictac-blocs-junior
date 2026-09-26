@@ -375,5 +375,6 @@
     "USAGE_SCHOOL": "School",
     "USAGE_HOME": "Home",
     "USAGE_OTHER": "Other",
-    "USAGE_NONE": "Don't ask again"
+    "USAGE_NONE": "Don't ask again",
+    "CHARACTER_JuniorBot.svg": "Junior"
 }

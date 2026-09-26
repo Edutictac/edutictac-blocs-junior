@@ -55,3 +55,16 @@ Components de tercers i les seues llicències:
 Nota: la font Verdana present als assets originals de ScratchJr ("test fonts from
 Microsoft for use in ScratchJr only. Pending full license agreement") NO es redistribueix.
 S'ha substituit per DejaVu Sans (llicencia lliure).
+
+-------------------------------------------------------------------------------
+Assets (sprites, fons i sons)
+-------------------------------------------------------------------------------
+
+La biblioteca d'sprites i fons (svglibrary/ i pnglibrary/), els sons (sounds/) i els
+projectes d'exemple (samples/) provenen de ScratchJr i es redistribueixen sota la
+llicencia BSD-3-Clause de MIT, conservant l'avís de copyright d'este fitxer. No
+s'utilitza cap de les marques nominatives (Scratch Cat, Gobo, Pico, Nano, Tera, Giga)
+ni el nom o el logotip de Scratch/ScratchJr com a identitat del producte.
+
+El personatge per defecte (svglibrary/JuniorBot.svg i pnglibrary/JuniorBot.png) es una
+creacio original d'EduTicTac i no prové de ScratchJr.

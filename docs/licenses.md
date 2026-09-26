@@ -131,10 +131,13 @@ documentarà a `docs/privacy.md`.
 
 1. [x] Afegir `LICENSE` (AGPL-3.0) i `NOTICE` (BSD-3-Clause de MIT + atribucions).
 2. [x] Eliminar la font **Verdana** i els `.ttf` associats; substituir per DejaVu Sans.
-3. [ ] De-branding complet: identitat pròpia feta (nom, logos, portada, lobby, editor i
-   «Sobre el projecte»); queden pendents els sprites/personatges de la biblioteca i el
-   contingut dels projectes de mostra.
-4. [ ] Auditar autoria de `svglibrary`, `pnglibrary`, `sounds`, `samples`.
+3. [x] De-branding: identitat pròpia feta (nom, logos, portada, lobby, editor i «Sobre el
+   projecte»), i **sprite per defecte propi** (`JuniorBot.svg`, original EduTicTac). La resta
+   de la biblioteca (`svglibrary`/`pnglibrary`/`sounds`/`samples`) es conserva sota
+   BSD-3-Clause amb atribució (no és obligatori reemplaçar-la); es pot substituir per
+   material propi més endavant.
+4. [ ] Auditar autoria de `svglibrary`, `pnglibrary`, `sounds`, `samples` (en curs; es
+   redistribueixen sota BSD-3-Clause amb l'avís de MIT).
 5. [x] Traure `analyticsEvent`, `appUsage` i qualsevol resta de Firebase (enquesta d'ús
    desactivada; el video introductori de ScratchJr eliminat).
 6. [ ] Traure l'id d'Amazon S3 del projecte de mostra incrustat (no s'hereta del codju; els
