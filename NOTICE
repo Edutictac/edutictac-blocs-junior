@@ -1,0 +1,56 @@
+EduTicTac Blocs Junior
+Copyright (C) 2026 EduTicTac i contribuïdors
+
+Aquest projecte és programari lliure: podeu redistribuir-lo i/o modificar-lo sota els
+termes de la Llicència Pública General Affero de GNU, versió 3 (AGPL-3.0), publicada per
+la Free Software Foundation. Vegeu el fitxer LICENSE.
+
+-------------------------------------------------------------------------------
+Codi heretat de ScratchJr
+-------------------------------------------------------------------------------
+
+Part del codi d'aquest projecte deriva de ScratchJr:
+
+    Copyright (c) 2016, Massachusetts Institute of Technology
+    Tots els drets reservats.
+    Distribuït sota la llicència BSD de 3 clàusules (BSD-3-Clause).
+
+L'avís de copyright i la llicència BSD-3-Clause de MIT es conserven intactes en els
+fitxers de codi heretat. La resta del codi nou d'EduTicTac es distribueix sota
+AGPL-3.0.
+
+Aquest projecte també deriva del treball comunitari de:
+
+    - ScratchJr-Desktop (jfo8000)               BSD-3-Clause
+    - ScratchJr-Web (codju-labs)                BSD-3-Clause
+    - ScratchJr-web (techlab4kids-apps)         BSD-3-Clause
+
+-------------------------------------------------------------------------------
+Avís sobre marques
+-------------------------------------------------------------------------------
+
+Scratch and ScratchJr are trademarks of Massachusetts Institute of Technology, which
+does not sponsor, endorse, or authorize this content. See scratchjr.org for more
+information.
+
+EduTicTac Blocs Junior és una modificació substancial de ScratchJr; per tant, s'han
+eliminat totes les marques (Marks) de Scratch i ScratchJr de la interfície, els recursos
+i la identitat del producte, d'acord amb la política de marques de MIT.
+
+-------------------------------------------------------------------------------
+Terceres parts
+-------------------------------------------------------------------------------
+
+Components de tercers i les seues llicències:
+
+    - Snap.svg / snapsvg-cjs .......... Apache-2.0 / MIT
+    - eve ............................. Apache-2.0
+    - intl ............................ MIT
+    - intl-messageformat .............. BSD-3-Clause
+    - JSZip ........................... MIT OR GPL-3.0-or-later
+    - sql.js .......................... MIT
+    - Font Roboto ..................... Apache-2.0
+
+Nota legal pendent d'auditoria: la font Verdana present als assets originals
+("test fonts from Microsoft for use in ScratchJr only. Pending full license agreement")
+NO es redistribueix en aquest projecte. S'ha substituït per una font lliure.
