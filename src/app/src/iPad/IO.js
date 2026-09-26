@@ -188,6 +188,7 @@ export default class IO {
     }
 
     static getObject (md5, fcn) {
+        md5 = String(md5); // junior: l'id d'un projecte creat en aquesta sessio arriba com a numero
         if (md5.indexOf('/') > -1) {
             var gotit = function (str) {
                 fcn(str);
@@ -436,7 +437,7 @@ export default class IO {
             var windowsReservedRe = /^(con|prn|aux|nul|com[0-9]|lpt[0-9])(\..*)?$/i;
             var windowsTrailingRe = /[\. ]+$/;
 
-            zipFileName = jsonData.name.replace(/\s*/g, '');
+            zipFileName = jsonData.name.trim(); // junior: conserva els espais ("3. El laberint.sjr")
             zipFileName = zipFileName
                 .replace(illegalRe, '_')
                 .replace(controlRe, '_')
@@ -447,9 +448,11 @@ export default class IO {
 
             function checkStatus () {
                 if ((zipAssetsActual / zipAssetsExpected) == 1) {
-                    finished(zipFile.generate({
-                        'compression': 'STORE'
-                    }));
+                    // junior: JSZip 3 (API asincrona)
+                    zipFile.generateAsync({
+                        type: 'base64',
+                        compression: 'STORE'
+                    }).then(finished);
                 } else {
                     setTimeout(checkStatus, 200);
                 }
@@ -518,16 +521,46 @@ export default class IO {
     }
 
     // Receive a base64-encoded zip from iOS (upon open a project)
+    // junior: JSZip 3 nomes llig de manera asincrona; extraiem primer tots els fitxers
+    // i despres fem el processament original. Torna una promesa (rebutjada si el fitxer no es valid).
     static loadProjectFromSjr (b64data) {
+        return JSZip.loadAsync(b64data, {
+            'base64': true
+        }).then(function (zip) {
+            var entries = [];
+            zip.forEach(function (relativePath, file) {
+                if (file.dir) {
+                    return;
+                }
+                var isJson = relativePath.split('/').pop() == 'data.json';
+                entries.push(file.async(isJson ? 'string' : 'binarystring').then(function (data) {
+                    return {relativePath: relativePath, dir: false, data: data};
+                }));
+            });
+            return Promise.all(entries);
+        }).then(function (entries) {
+            if (!entries.some(function (e) {
+                return e.relativePath.split('/').pop() == 'data.json';
+            })) {
+                throw new Error('No data.json in .sjr');
+            }
+            IO.processSjrEntries(entries);
+        });
+    }
+
+    static processSjrEntries (entries) {
         // Together, these two provide a "progress" indication
         // that lets us know when to refresh the lobby (when sE/sA = 1)
         var saveExpected = 0; // How many assets we expect to save - updated as we process the zip
         var saveActual = 0; // How many assets actually saved - updated as we make IO saves
 
-        var receivedZip = JSZip();
-        receivedZip.load(b64data, {
-            'base64': true
-        });
+        var receivedZip = {
+            forEach: function (fn) {
+                entries.forEach(function (e) {
+                    fn(e.relativePath, e);
+                });
+            }
+        };
 
         // To store character MD5 -> character name map
         // The character name is stored in the project JSON; when we load
@@ -544,7 +577,7 @@ export default class IO {
             }
             var fullName = relativePath.split('/').pop();
             if (fullName == 'data.json') {
-                var jsonData = JSON.parse(file.asText());
+                var jsonData = JSON.parse(file.data);
 
                 // To require an upgrade, change the major version numbers in .html files and here...
                 var currentVersion = 1;
@@ -605,7 +638,7 @@ export default class IO {
             }
 
             // File data and base64-encoded data
-            var data = file.asBinary();
+            var data = file.data;
             var b2data = btoa(data);
 
             if (subFolder == 'thumbnails' || subFolder == 'sounds') {

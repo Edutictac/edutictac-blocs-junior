@@ -3,6 +3,7 @@
     "scratchJrVersion": "iOSv01",
     "useStoryStarters": true,
     "shareEnabled": false,
+    "sjrFilesEnabled": true,
     "defaultSprite": "JuniorBot.svg",
     "spriteOutlineColor": "white",
     "stageColor": "#F5F2F7",

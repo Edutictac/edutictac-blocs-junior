@@ -465,7 +465,23 @@ class ElectronDesktopInterface {
   }
 
   deviceName() {
-    return "desktop";
+    return "";
+  }
+
+  // junior: exporta el projecte (zip en base64) com a descarrega <nom>.sjr
+  sendSjrUsingShareDialog(fileName, emailSubject, emailBody, shareType, b64data) {
+    const raw = atob(b64data);
+    const bytes = new Uint8Array(raw.length);
+    for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+    const blob = new Blob([bytes], { type: "application/zip" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${fileName || "projecte"}.sjr`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
   }
 
   analyticsEvent(category, action, usageLabel, value) {

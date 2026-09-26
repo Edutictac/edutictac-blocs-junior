@@ -406,5 +406,8 @@
     "SAMPLE_TEXT_key_race_goal": "Canvia la velocitat de Tic perquè guanye!",
     "SAMPLE_TEXT_key_race_go": "Ja!",
     "SAMPLE_TEXT_key_race_arrived": "He arribat!",
-    "SAMPLE_TEXT_key_character_tac": "Tac"
+    "SAMPLE_TEXT_key_character_tac": "Tac",
+    "SJR_EXPORT": "Desa una còpia (.sjr)",
+    "SJR_IMPORT": "Obri un fitxer .sjr",
+    "SJR_IMPORT_ERROR": "No s'ha pogut obrir el fitxer. Comprova que és un projecte .sjr."
 }

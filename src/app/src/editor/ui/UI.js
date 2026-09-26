@@ -155,6 +155,17 @@ export default class UI {
                     UI.infoDoShare(e, nameField, shareLoadingGif, 0);
                 });
             };
+        } else if (window.Settings.sjrFilesEnabled) {
+            // junior: a la web, un sol boto que baixa el projecte com a fitxer .sjr
+            var saveButtons = newHTML('div', 'infoboxShareButtons', infobox);
+            var saveSjr = newHTML('div', 'infoboxShareButton', saveButtons);
+            saveSjr.id = 'infoboxShareButtonSave';
+            saveSjr.textContent = Localization.localize('SJR_EXPORT');
+            var saveLoadingGif = newHTML('img', 'infoboxShareLoading', saveButtons);
+            saveLoadingGif.src = './assets/ui/loader.png';
+            saveSjr.onmousedown = function (e) {
+                UI.infoDoShare(e, nameField, saveLoadingGif, 2);
+            };
         }
 
         info.onmousedown = UI.showInfoBox;
@@ -238,12 +249,14 @@ export default class UI {
 
         setTimeout(saveAndShare, 500); // 500ms delay to wait for loading GIF to show and keyboard to hide
 
-        iOS.analyticsEvent('editor', 'share_button', (shareType == 0) ? 'email' : 'airdrop');
+        iOS.analyticsEvent('editor', 'share_button', ['email', 'airdrop', 'download'][shareType]);
 
         function saveAndShare () {
             // Save the project's new name
-            UI.handleTextFieldSave(true);
+            UI.handleTextFieldSave(true, zipAndShare);
+        }
 
+        function zipAndShare () {
             // Save any changes made to the project
             ScratchJr.onHold = true; // Freeze the editing UI
             ScratchJr.stopStripsFromTop(evt);
@@ -310,11 +323,13 @@ export default class UI {
         return ti;
     }
 
-    static handleTextFieldSave (dontHide) {
+    // junior: whenDone (opcional) s'executa quan el projecte ja te id propi (mode storyStarter)
+    static handleTextFieldSave (dontHide, whenDone) {
         // Handle story-starter mode project
         if (ScratchJr.isEditable() && ScratchJr.editmode == 'storyStarter' && !Project.error) {
             iOS.analyticsEvent('samples', 'story_starter_edited', Project.metadata.name);
             // Get the new project name
+            var rawName = Project.metadata.name;
             var sampleName = Localization.localize('SAMPLE_' + Project.metadata.name);
             IO.uniqueProjectName({
                 name: sampleName
@@ -331,11 +346,21 @@ export default class UI {
                     ScratchJr.currentProject = md5;
                     ScratchJr.editmode = 'edit';
                     Project.metadata.gallery = '';
+                    // junior: si no s'ha reanomenat, conserva el nom traduit de la plantilla
+                    if (projectNameTextInput.value == rawName) {
+                        projectNameTextInput.value = newName;
+                    }
                     UI.finishTextFieldSave(dontHide);
+                    if (whenDone) {
+                        whenDone();
+                    }
                 });
             });
         } else {
             UI.finishTextFieldSave(dontHide);
+            if (whenDone) {
+                whenDone();
+            }
         }
     }
 

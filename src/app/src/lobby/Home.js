@@ -38,6 +38,40 @@ export default class Home {
         tb.id = 'newproject';
     }
 
+    // junior: targeta per importar un projecte des d'un fitxer .sjr
+    static importProjectThumbnail (parent) {
+        var tb = newHTML('div', 'projectthumb', parent);
+        newHTML('div', 'aproject import', tb);
+        tb.id = 'importproject';
+        var label = newHTML('div', 'projecttitle', tb);
+        newHTML('h4', undefined, label).textContent = Localization.localize('SJR_IMPORT');
+    }
+
+    static importProject () {
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.sjr,application/zip';
+        input.style.display = 'none';
+        input.onchange = function () {
+            var file = input.files && input.files[0];
+            input.remove();
+            if (!file) {
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function () {
+                var b64 = String(reader.result).split(',')[1] || '';
+                IO.loadProjectFromSjr(b64).catch(function (err) {
+                    console.log(err); // eslint-disable-line no-console
+                    window.alert(Localization.localize('SJR_IMPORT_ERROR'));
+                });
+            };
+            reader.readAsDataURL(file);
+        };
+        document.body.appendChild(input);
+        input.click();
+    }
+
     //////////////////////////
     // Events
     //////////////////////////
@@ -134,6 +168,8 @@ export default class Home {
             ScratchAudio.sndFX('keydown.wav');
             if (md5 && (md5 == 'newproject')) {
                 Home.createNewProject();
+            } else if (md5 && (md5 == 'importproject')) {
+                Home.importProject();
             } else if (md5) {
                 iOS.setfile('homescroll.sjr', gn('wrapc').scrollTop, function () {
                     doNext(md5);
@@ -185,7 +221,7 @@ export default class Home {
         var pn = [];
         var div = gn('scrollarea');
         for (var i = 0; i < div.childElementCount; i++) {
-            if (div.childNodes[i].id == 'newproject') {
+            if ((div.childNodes[i].id == 'newproject') || (div.childNodes[i].id == 'importproject')) {
                 continue;
             }
             pn.push(div.childNodes[i].childNodes[1].childNodes[0].textContent);
@@ -250,6 +286,9 @@ export default class Home {
             div.removeChild(div.childNodes[0]);
         }
         Home.emptyProjectThumbnail(div);
+        if (window.Settings.sjrFilesEnabled) {
+            Home.importProjectThumbnail(div);
+        }
         for (var i = 0; i < data.length; i++) {
             Home.addProjectLink(div, data[i]);
         }

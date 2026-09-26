@@ -406,5 +406,8 @@
     "SAMPLE_TEXT_key_race_goal": "Change Tic's speed so it wins!",
     "SAMPLE_TEXT_key_race_go": "Go!",
     "SAMPLE_TEXT_key_race_arrived": "I made it!",
-    "SAMPLE_TEXT_key_character_tac": "Tac"
+    "SAMPLE_TEXT_key_character_tac": "Tac",
+    "SJR_EXPORT": "Save a copy (.sjr)",
+    "SJR_IMPORT": "Open a .sjr file",
+    "SJR_IMPORT_ERROR": "The file could not be opened. Check that it is a .sjr project."
 }

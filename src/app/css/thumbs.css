@@ -195,3 +195,10 @@
     margin: 0px;
     width: 100%;
 }
+
+/* junior: targeta per importar un projecte .sjr */
+.aproject.import {
+    background: url('../assets/lobby/importproject.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}

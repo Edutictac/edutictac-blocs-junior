@@ -128,6 +128,11 @@ export default class ScratchJr {
         return currentProject;
     }
 
+    // junior: UI.handleTextFieldSave l'assigna en mode storyStarter
+    static set currentProject (newCurrentProject) {
+        currentProject = newCurrentProject;
+    }
+
     static get editmode () {
         return editmode;
     }
