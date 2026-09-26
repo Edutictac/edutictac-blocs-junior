@@ -171,7 +171,8 @@ export default class Lobby {
         gn('subtitle').textContent = Localization.localize('CHALLENGES_SUBTITLE');
         var link = gn('teacherlink');
         link.textContent = Localization.localize('FOR_TEACHERS');
-        link.href = 'fitxes/' + (Localization.currentLocale == 'es' ? 'es' : 'ca') + '/index.html';
+        // les fitxes només existeixen en ca/es; l'anglés obri les de castellà
+        link.href = 'fitxes/' + (Localization.currentLocale == 'ca' ? 'ca' : 'es') + '/index.html';
         link.onmousedown = function (e) {
             e.stopPropagation();
         };

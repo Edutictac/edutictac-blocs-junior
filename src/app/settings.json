@@ -22,7 +22,8 @@
     "defaultLocaleShort": "ca",
     "supportedLocales": {
         "Català": "ca",
-        "Español": "es"
+        "Español": "es",
+        "English": "en"
     },
     "settingsPageDisabled": false
 }

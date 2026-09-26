@@ -17,8 +17,8 @@ test('les traduccions ca, es i en tenen les mateixes claus', () => {
   assert.deepEqual(keys('en'), ca);
 });
 
-test('les traduccions ca i es no tenen textos buits', () => {
-  for (const l of ['ca', 'es']) {
+test('les traduccions ca, es i en no tenen textos buits', () => {
+  for (const l of ['ca', 'es', 'en']) {
     const loc = readJson(join(app, 'localizations', `${l}.json`));
     const empty = Object.keys(loc).filter((k) => typeof loc[k] === 'string' && !loc[k].trim());
     assert.deepEqual(empty, [], `claus buides en ${l}`);

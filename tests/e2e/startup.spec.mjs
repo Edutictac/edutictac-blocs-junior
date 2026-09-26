@@ -23,7 +23,7 @@ test('el lobby carrega amb la marca EduTicTac i sense peticions externes', async
   expect(w.external).toEqual([]);
 });
 
-for (const lang of ['ca', 'es']) {
+for (const lang of ['ca', 'es', 'en']) {
   test(`la targeta d'importar es tradueix (${lang})`, async ({ page }) => {
     await watch(page, lang);
     await openHome(page);
