@@ -15,6 +15,12 @@ if (!debugMode) installViewportGuard();
 
 document.title = brand.name;
 
+// Precarrega les fonts web: si no, el primer bocadillo de "diu" es mesura amb la
+// font de reserva i el text acaba eixint-se'n quan arriba la definitiva.
+if (document.fonts && document.fonts.load) {
+  ['bold 14px Verdana', '14px Verdana'].forEach((f) => document.fonts.load(f).catch(() => {}));
+}
+
 // El service worker nomes es registra quan no estem en desenvolupament local.
 const isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
 if ('serviceWorker' in navigator && !isLocal) {

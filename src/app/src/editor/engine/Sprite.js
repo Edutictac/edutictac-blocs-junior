@@ -622,6 +622,19 @@ export default class Sprite {
             visibility: 'visible'
         });
         this.drawBalloon();
+        // junior: el navegador pot acabar de maquetar la font web despres de mesurar;
+        // si el text passa a ocupar mes linies, ajustem l'alcada del bocadillo.
+        var balloon = this.balloon;
+        [60, 250].forEach((ms) => setTimeout(() => {
+            if (this.balloon !== balloon) {
+                return;
+            }
+            var nh = p.offsetHeight + curve * 2 + 7;
+            if (nh !== balloon.offsetHeight) {
+                setCanvasSize(balloon, w, nh);
+                this.updateBubble();
+            }
+        }, ms));
     }
 
     updateBubble () {

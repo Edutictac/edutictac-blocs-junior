@@ -387,5 +387,10 @@
     "SAMPLE_TEXT_key_maze_goal": "¡Lleva a Junior a la estrella sin tocar los cactus!",
     "SAMPLE_TEXT_key_maze_ouch": "¡Ay!",
     "SAMPLE_TEXT_key_character_cactus": "Cactus",
+    "SAMPLE_Junior introduces": "4. Nos presentamos",
+    "SAMPLE_TEXT_key_intro_goal": "Toca a Junior. ¡Después haz que Tic se presente!",
+    "SAMPLE_TEXT_key_intro_hello": "¡Hola, soy Junior!",
+    "SAMPLE_TEXT_key_intro_like": "¡Me gusta programar!",
+    "SAMPLE_TEXT_key_character_tic": "Tic",
     "SAMPLE_TEXT_key_character_tac": "Tac"
 }
