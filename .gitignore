@@ -8,3 +8,5 @@ build/
 .DS_Store
 reference/
 upstream/
+test-results/
+playwright-report/

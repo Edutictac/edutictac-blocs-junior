@@ -587,9 +587,13 @@ export default class IO {
                     throw new Error('Project created in a new version of ScratchJr. Please upgrade ScratchJr.');
                 }
 
+                // junior: el lobby tambe ha d'esperar que es cree el projecte, no sols els recursos
+                saveExpected++;
                 IO.uniqueProjectName(jsonData, function (jsonData) {
                     jsonData.isgift = '1'; // Project will display with a bow and ribbon
-                    IO.createProject(jsonData, function () {});
+                    IO.createProject(jsonData, function () {
+                        saveActual++;
+                    });
                 });
 
                 // Build map of character filename -> character name
@@ -744,7 +748,8 @@ export default class IO {
         // For updating the Lobby UI - if we're on the lobby page when receiving a project, refresh it
         function refreshLobby () {
             if (gn('hometab') !== null) { // Check if we're on the lobby page
-                if (saveActual == saveExpected) {
+                // junior: setPage no fa res mentre el lobby encara s'esta pintant (busy)
+                if (saveActual == saveExpected && !Lobby.busy) {
                     Lobby.setPage('home');
                 } else { // Waiting for assets to be saved
                     setTimeout(refreshLobby, 100);

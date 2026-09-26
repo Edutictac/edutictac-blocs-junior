@@ -27,6 +27,10 @@ export default class Lobby {
         busy = newBusy;
     }
 
+    static get busy () {
+        return busy;
+    }
+
     static get errorTimer () {
         return errorTimer;
     }

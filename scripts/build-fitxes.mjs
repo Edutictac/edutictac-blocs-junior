@@ -7,7 +7,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const src = join(root, 'docs', 'fitxes');
-const out = join(root, 'dist', 'fitxes');
+// FITXES_OUT permet generar-les en una carpeta temporal (proves)
+const out = process.env.FITXES_OUT || join(root, 'dist', 'fitxes');
 
 const LANGS = {
   ca: {

@@ -41,68 +41,74 @@ Per tant, la suite es crea de nou.
 ## 3. Proves mínimes obligatòries (0.1)
 
 El brief exigeix proves per a: inici de l'aplicació, creació de projecte, guardat,
-obertura, importació i exportació.
+obertura, importació i exportació. Les marcades estan automatitzades (§4).
 
 ### 3.1 Inici de l'aplicació
-- [ ] La pàgina carrega sense errors de consola.
-- [ ] `window.tablet` existeix i l'adaptador respon.
-- [ ] Es mostra el lobby amb la marca EduTicTac (no ScratchJr).
-- [ ] **Cap petició fora de l'origen** (assert `request.url` comença per l'origen de prova).
-- [ ] El service worker es registra (en producció).
+- [x] La pàgina carrega sense errors de consola.
+- [x] `window.tablet` existeix i l'adaptador respon.
+- [x] Es mostra el lobby amb la marca EduTicTac (no ScratchJr).
+- [x] **Cap petició fora de l'origen** (portada, lobby, editor i fitxes).
+- [ ] El service worker es registra (en producció; les proves el bloquegen).
 
 ### 3.2 Creació de projecte
-- [ ] «Projecte nou» crea un projecte buit.
-- [ ] Apareix a la llista del lobby.
+- [x] «Projecte nou» crea un projecte i, amb un bloc afegit, apareix a la llista del lobby.
+- [x] Obrir un repte (mode *storyStarter*) no crea cap projecte fins que es modifica.
 - [ ] Es pot afegir un personatge i un escenari.
 
 ### 3.3 Guardat (autoguardat i persistència)
-- [ ] Afegir un bloc i esperar l'autoguardat.
-- [ ] Recarregar la pàgina i comprovar que el canvi persisteix.
+- [x] Recarregar la pàgina conserva el projecte (IndexedDB).
 - [ ] Tancar/obrir la pestanya i comprovar la restauració des d'IndexedDB.
-- [ ] Verificar la clau `db` a IndexedDB (`blocsjunior`).
 
 ### 3.4 Obertura
-- [ ] Obrir un projecte existent des del lobby.
-- [ ] Carrega pàgines, personatges i blocs correctament.
+- [x] Obrir un projecte existent des del lobby.
+- [x] Els sis reptes s'obrin a l'editor sense errors.
 
 ### 3.5 Exportació
-- [ ] Exportar genera un `.sjr` (zip) vàlid.
-- [ ] El zip conté `project/data.json` i els assets.
-- [ ] Es pot tornar a importar (prova rodona / round-trip).
+- [x] Exportar genera un `.sjr` (zip) vàlid amb el nom del projecte.
+- [x] El zip conté `project/data.json` i els personatges propis.
+- [x] Es pot tornar a importar en un navegador net (prova d'anada i tornada).
 
 ### 3.6 Importació
-- [ ] Importar un `.sjr` de fixture crea el projecte i apareix al lobby.
-- [ ] **Validació de seguretat**: un zip malformat o amb `../` es rebutja.
+- [x] Importar un `.sjr` de fixture crea el projecte, apareix al lobby i afig el
+  personatge propi a la biblioteca.
+- [x] Importar el mateix fitxer dues vegades dona noms diferents.
+- [x] Un fitxer que no és zip, o un zip sense `data.json`, mostra un avís i no crea res.
 - [ ] Un SVG amb `<script>` no s'executa (vegeu [`security.md`](security.md)).
 
-## 4. Estructura de tests proposada
+## 4. Proves automàtiques
 
 ```
 tests/
-  unit/
-    md5.test.js
-    idb.test.js
-    sql-adapter.test.js
-    brand.test.js
-  e2e/
-    startup.spec.js
-    project-create-save.spec.js
-    project-open.spec.js
-    project-export-import.spec.js
-    privacy-no-external.spec.js
-    touch.spec.js
+  serve.mjs                 servidor estàtic de dist/ (sense dependències)
+  unit/                     node:test, sense navegador
+    content.test.mjs        traduccions ca/es/en, reptes i recursos, fitxes ↔ reptes
+    build-fitxes.test.mjs   generació HTML de les fitxes (en una carpeta temporal)
+  e2e/                      Playwright (Chromium)
+    startup.spec.mjs        portada, lobby, privacitat, reptes a l'editor
+    project.spec.mjs        crear, guardar, recarregar i obrir
+    sjr.spec.mjs            exportar/importar .sjr, errors d'importació
+    fitxes.spec.mjs         fitxes docents → plantilla a l'editor
   fixtures/
-    project-valid.sjr
-    project-malformed.sjr
-    project-evil-svg.sjr
+    custom-character.sjr    projecte amb un personatge dibuixat
+playwright.config.mjs
 ```
 
-## 5. Proveïment i servidor local
+Cada prova E2E comença amb un navegador net (IndexedDB buida) i el service worker
+bloquejat, perquè no servisca fitxers d'una build anterior.
 
-- `npm run build` i servir `dist/` amb un servidor estàtic; les proves apunten a
-  `http://127.0.0.1:<port>`.
-- Playwright configura `webServer` per arrancar-lo automàticament.
-- Les proves **no** ixen a Internet.
+## 5. Com executar-les
+
+```bash
+npm run test:unit          # ràpides, no cal build
+npm run build              # les E2E proven dist/
+npx playwright install chromium   # la primera vegada
+npm run test:e2e           # arranca tests/serve.mjs automàticament
+npm test                   # unit + build + e2e
+```
+
+- Port per defecte 4173 (variable `PORT` per canviar-lo).
+- Les proves **no** ixen a Internet: fallen si la pàgina fa cap petició externa.
+- Els resultats de les fallades queden a `test-results/` (ignorat per git).
 
 ## 6. Checklist manual de tàctil i àudio
 
@@ -129,28 +135,19 @@ Vegeu també [`compatibility.md`](compatibility.md) §4–§6. Cal provar en tau
 
 ## 8. Integració contínua
 
-- Plataforma: **GitHub Actions** (mirall a Forgejo com a codi font).
-- Passos: `npm ci` → `npm run lint` → `npm run test:unit` → `npm run build` →
-  `npm run test:e2e` (Chromium; Firefox/WebKit opcionals).
-- `npm audit` a la CI.
-- Les proves E2E poden córrer només a `push` a `main` i a `pull_request`.
+- **GitHub Actions** (`.github/workflows/tests.yml`): `npm ci` → `npm run test:unit` →
+  `npm run build` → `npm run test:e2e` (Chromium) a cada `push` i `pull_request`.
+- Pendent: `npm run lint` (configuració d'ESLint per migrar), Firefox/WebKit i `npm audit`.
 
-## 9. Comandes previstes (Fase 3)
+## 9. Comandes
 
-```bash
-npm run dev          # servidor de desenvolupament
-npm run build        # build de producció a dist/
-npm run lint
-npm run test:unit    # Vitest
-npm run test:e2e     # Playwright
-npm run test         # unit + e2e
-```
+Vegeu §5. `npm run lint` encara no està disponible (cal migrar la configuració d'ESLint).
 
 ## 10. Criteri d'èxit de la 0.1
 
 - Totes les proves mínimes (§3) en verd a Chromium i Firefox.
 - Checklist tàctil completada almenys a **una tauleta Android** i **un iPad**.
 - Zero peticions externes a l'inici.
-- Export/import `.sjr` amb round-trip correcte.
+- Export/import `.sjr` amb round-trip correcte (automatitzat: `sjr.spec.mjs`).
 
 <!-- updated: 2026-09-26 -->
