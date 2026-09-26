@@ -236,8 +236,8 @@
         },
         "Cat 2": {
           "homeflip": false,
-          "cy": 116,
-          "cx": 83,
+          "cy": 126,
+          "cx": 75,
           "sounds": [
             "pop.mp3",
             "samples/glubglub.wav"
@@ -270,15 +270,15 @@
               ]
             ]
           ],
-          "md5": "samples/e975f53aff72b28d2cf9827e0e2ab442.svg",
-          "name": "key_character_cat",
+          "md5": "JuniorBot.svg",
+          "name": "Junior",
           "ycoor": 194,
           "homex": 273,
           "homey": 194,
           "flip": false,
           "homescale": 0.5,
-          "w": 166,
-          "h": 232,
+          "w": 151,
+          "h": 253,
           "xcoor": 273,
           "homeshown": true,
           "defaultScale": 0.5

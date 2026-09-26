@@ -64,6 +64,11 @@ d'idioma, de-branding) → **és una modificació substancial**. Per tant:
 - Cal **eliminar totes les Marks** de la UI, resources, capçalera i noms de fitxer de
   producte. Els assets de marca (gat, logos) no poden distribuir-se dins Blocs Junior.
 
+Auditoria del gat (2026-09-26): retirat `Cat.svg`; les plantilles que el feien servir
+(QuickIntro, Seasons, AnimalRace) ara usen Junior; eliminat el gat blau recolorit de
+QuickIntro i la plantilla no llistada CatonBat; tret el gat de l'insígnia d'`Aeroplane.svg`;
+miniatures regenerades.
+
 > Açò encaixa amb el requisit del brief: «No usar branding que pueda crear confusión con
 > ScratchJr oficial».
 
