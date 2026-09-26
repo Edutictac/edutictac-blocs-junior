@@ -5,7 +5,10 @@ export const isTablet = (window.orientation != 'undefined');
 export const DEGTOR = Math.PI / 180;
 //export const WINDOW_INNER_HEIGHT = window.innerHeight;
 //export const WINDOW_INNER_WIDTH = window.innerWidth;
-export const scaleMultiplier = 1.0;  //WINDOW_INNER_HEIGHT / 768.0;
+// junior: la interficie esta dissenyada per a 1024x768 (iPad horitzontal). Escalem segons la
+// finestra (com l'app original), limitant per l'ample perque no es talle en pantalles 5:4.
+// Es calcula una sola vegada: si la finestra canvia de mida, web/viewport.js recarrega la pagina.
+export const scaleMultiplier = Math.max(0.3, Math.min(window.innerHeight / 768.0, window.innerWidth / 1024.0, 2.5));
 
 export const isiOS = (typeof AndroidInterface == 'undefined');
 export const isAndroid = (typeof AndroidInterface != 'undefined');
