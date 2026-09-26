@@ -392,5 +392,12 @@
     "SAMPLE_TEXT_key_intro_hello": "Hi, I'm Junior!",
     "SAMPLE_TEXT_key_intro_like": "I like coding!",
     "SAMPLE_TEXT_key_character_tic": "Tic",
+    "SAMPLE_Junior story": "5. A 3-page story",
+    "SAMPLE_TEXT_key_story_p1": "Junior goes on a trip.",
+    "SAMPLE_TEXT_key_story_trip": "I'm off to the woods!",
+    "SAMPLE_TEXT_key_story_p2": "In the woods Junior meets Tic.",
+    "SAMPLE_TEXT_key_story_hi": "Hi, Tic!",
+    "SAMPLE_TEXT_key_story_beach": "Let's go to the beach!",
+    "SAMPLE_TEXT_key_story_p3": "Make up the ending yourself!",
     "SAMPLE_TEXT_key_character_tac": "Tac"
 }

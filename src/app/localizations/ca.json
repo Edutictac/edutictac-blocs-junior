@@ -392,5 +392,12 @@
     "SAMPLE_TEXT_key_intro_hello": "Hola, soc Junior!",
     "SAMPLE_TEXT_key_intro_like": "M'agrada programar!",
     "SAMPLE_TEXT_key_character_tic": "Tic",
+    "SAMPLE_Junior story": "5. Un conte en 3 pàgines",
+    "SAMPLE_TEXT_key_story_p1": "Junior se'n va d'excursió.",
+    "SAMPLE_TEXT_key_story_trip": "Me'n vaig al bosc!",
+    "SAMPLE_TEXT_key_story_p2": "Al bosc es troba Tic.",
+    "SAMPLE_TEXT_key_story_hi": "Hola, Tic!",
+    "SAMPLE_TEXT_key_story_beach": "Anem a la platja!",
+    "SAMPLE_TEXT_key_story_p3": "Inventa tu el final del conte!",
     "SAMPLE_TEXT_key_character_tac": "Tac"
 }
