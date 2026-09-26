@@ -8,20 +8,24 @@ dins de l'ecosistema EduTicTac.
 
 ## Estat
 
-**Fase 1 (auditoria) completada.** Encara no hi ha codi d'aplicació. L'objectiu d'aquesta
-fase era auditar els projectes originals, comparar arquitectures i documentar les decisions
-abans d'escriure cap línia de codi.
+**Fases 1 i 2 completades.** Encara no hi ha codi d'aplicació: primer es documenta i es
+decideix l'arquitectura. La implementació del MVP (0.1) és la fase següent.
 
-Documents disponibles:
+Fase 1 — auditoria:
 
 - [`docs/audit.md`](docs/audit.md) — auditoria tècnica dels quatre projectes originals.
 - [`docs/upstream-analysis.md`](docs/upstream-analysis.md) — comparació i estratègia d'upstream.
 - [`docs/licenses.md`](docs/licenses.md) — llicències, marca i assets.
 
-Documents previstos (fases següents):
+Fase 2 — arquitectura i disseny:
 
-- `docs/architecture.md`, `docs/privacy.md`, `docs/security.md`
-- `docs/compatibility.md`, `docs/testing.md`, `docs/deployment.md`, `docs/development.md`
+- [`docs/architecture.md`](docs/architecture.md) — arquitectura mínima viable de la 0.1.
+- [`docs/privacy.md`](docs/privacy.md) — privacitat i connexions de xarxa.
+- [`docs/security.md`](docs/security.md) — seguretat i amenaces.
+- [`docs/compatibility.md`](docs/compatibility.md) — dispositius i navegadors.
+- [`docs/testing.md`](docs/testing.md) — proves automàtiques i checklist tàctil.
+- [`docs/deployment.md`](docs/deployment.md) — Docker, proxy i HTTPS.
+- [`docs/development.md`](docs/development.md) — entorn de treball i convencions.
 
 ## Relació amb altres projectes EduTicTac
 

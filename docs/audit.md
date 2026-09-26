@@ -246,7 +246,7 @@ PROJECTFILES (MD5 PK, CONTENTS)   ← taula pròpia d'aquest port: guarda SVG/PN
 
 ### 5.5 i18n
 
-- Mecanisme: `utils/Localization.js` + fitxers JSON de `localitzacions/`, `settings.json`
+- Mecanisme: `utils/Localization.js` + fitxers JSON de `localizations/`, `settings.json`
   amb `supportedLocales` i `defaultLocale`.
 - Oficial té **22 idiomes** i **ca + es**. Els ports en tenen 12 i **també ca + es**.
 - **No hi ha valencià** diferenciat: caldrà crear `ca-ES-valencia` (o `va`) a partir del

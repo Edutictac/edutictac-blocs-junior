@@ -188,12 +188,13 @@ carpetes distintes.
 
 ## 8. Fases proposades
 
-- **Fase 0 (feta):** auditoria i anàlisi (aquests documents).
-- **Fase 1:** arquitectura, privacitat, seguretat, compatibilitat, testing (docs).
-- **Fase 2 (MVP 0.1):** fork des de desktop; tallar Electron; adaptador web amb sql.js +
+- **Fase 1 (feta):** auditoria i anàlisi (`audit.md`, `upstream-analysis.md`, `licenses.md`).
+- **Fase 2 (feta):** arquitectura i disseny (`architecture.md`, `privacy.md`, `security.md`,
+  `compatibility.md`, `testing.md`, `deployment.md`, `development.md`).
+- **Fase 3 (MVP 0.1):** fork des de desktop; tallar Electron; adaptador web amb sql.js +
   IndexedDB; lobby; crear/obrir/guardar/importar/exportar; i18n `ca`/`es` (el `va`
   s'afegirà després); Docker; de-branding; 2–3 plantilles.
-- **Fase 3:** PWA offline, proves en tauletes reals, càmera opcional, accesibilitat.
+- **Fase 4:** PWA offline, proves en tauletes reals, càmera opcional, accesibilitat.
 
 ## 9. Decisions preses
 
