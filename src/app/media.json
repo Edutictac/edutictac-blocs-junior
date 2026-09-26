@@ -3,6 +3,7 @@
     "samples": [
         "samples/JuniorWalks.txt",
         "samples/JuniorDances.txt",
+        "samples/JuniorMaze.txt",
         "samples/Underthesea.txt",
         "samples/Farm.txt",
         "samples/Seasons.txt",

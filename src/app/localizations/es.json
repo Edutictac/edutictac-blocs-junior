@@ -383,5 +383,9 @@
     "SAMPLE_TEXT_key_character_apple": "Manzana",
     "SAMPLE_Junior dances": "2. Junior baila",
     "SAMPLE_TEXT_key_junior_dance_goal": "¡Haz que Junior baile como Tac!",
+    "SAMPLE_Junior maze": "3. El laberinto",
+    "SAMPLE_TEXT_key_maze_goal": "¡Lleva a Junior a la estrella sin tocar los cactus!",
+    "SAMPLE_TEXT_key_maze_ouch": "¡Ay!",
+    "SAMPLE_TEXT_key_character_cactus": "Cactus",
     "SAMPLE_TEXT_key_character_tac": "Tac"
 }
