@@ -87,7 +87,8 @@ function markdown (md) {
         if (lines[i].trim() && /^\s{2,}/.test(lines[i]) && items.length) { items[items.length - 1] += ' ' + lines[i].trim(); i++; continue; }
         break;
       }
-      html.push(`<${tag}>` + items.map((t) => `<li>${inline(t)}</li>`).join('') + `</${tag}>`);
+      const start = tag === 'ol' && parseInt(li[2], 10) > 1 ? ` start="${parseInt(li[2], 10)}"` : '';
+      html.push(`<${tag}${start}>` + items.map((t) => `<li>${inline(t)}</li>`).join('') + `</${tag}>`);
       continue;
     }
     const para = [];
