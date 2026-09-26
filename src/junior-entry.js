@@ -1,6 +1,8 @@
 // Punt d'entrada web d'EduTicTac Blocs Junior (junior).
+// 0) mode de diagnosi opcional (?debug=1)
 // 1) instal·la la interficie web (window.tablet)
 // 2) carrega l'entry original de ScratchJr, que despatxa per window.scratchJrPage
+import { debugMode } from './web/debugOverlay.js';
 import './web/tabletInterface.js';
 import './app/appEntry.js';
 import brand from './web/brand/brand.js';
@@ -8,7 +10,8 @@ import { installTouchShim } from './web/touchShim.js';
 import { installViewportGuard } from './web/viewport.js';
 
 installTouchShim();
-installViewportGuard();
+// En mode diagnosi no tapem la pantalla amb l'avis de girar.
+if (!debugMode) installViewportGuard();
 
 document.title = brand.name;
 
