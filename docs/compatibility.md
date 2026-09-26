@@ -18,22 +18,24 @@ Fase 2. Complement de [`testing.md`](testing.md).
 > Prioritari: **tauletes tàctils** i **ordinadors d'aula**. El disseny ha de funcionar amb
 > ratolí i amb dit.
 
-### Estat real (2026-09-26): incompatible amb navegadors d'Apple
+### Estat real (2026-09-26)
 
 | Plataforma | Estat |
 |---|---|
 | Android (Chrome) | ✅ Funciona (provat en tauleta real) |
 | Linux (Chromium/Firefox) | ✅ Funciona |
 | Windows (Chrome/Edge/Firefox) | ✅ Esperat (mateixos motors) |
-| iPad (Safari iPadOS) | ❌ **No compatible de moment** |
-| Mac (Safari macOS) | ❌ No suportat de moment (mateix motor WebKit, sense provar) |
+| iPad (Safari iPadOS) | ✅ Funciona (provat en iPad real) |
+| Mac (Safari macOS) | ✅ Esperat (mateix motor WebKit; proves automàtiques en WebKit) |
 
-En un iPad real: en finestra normal la portada no respon (sense icones, botons morts);
-en finestra privada la portada va però les plantilles no obrin l'editor. En el
-simulador d'iPad i en Playwright WebKit no es reprodueix (sense errors JS). Queda
-aparcat. Per reprendre-ho: obrir `home.html?debug=1` a l'iPad real (mostra el registre
-d'errors a la part de baix) i revisar el service worker/cau i el pont tàctil
-(`src/web/touchShim.js`, possible doble clic en mode *scroll*).
+Les proves E2E s'executen en Chromium, WebKit d'escriptori i WebKit amb emulació
+d'iPad (tàctil, horitzontal); vegeu [`testing.md`](testing.md).
+
+**Si un iPad mostra la portada sense icones o amb botons que no responen**, és una
+còpia antiga de l'aplicació guardada per Safari (versions dels primers dies). Solució:
+Ajustes → Safari → Avanzado → Datos de sitios web → esborrar
+`blocs-junior.edutictac.es` i tornar a obrir la pàgina. Per diagnosticar altres
+problemes: `home.html?debug=1` mostra el registre d'errors a la part de baix.
 
 ## 2. Matriu de funcionalitats per API
 

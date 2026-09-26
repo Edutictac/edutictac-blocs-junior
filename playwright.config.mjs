@@ -20,6 +20,8 @@ export default defineConfig({
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'], viewport: { width: 1180, height: 820 } } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'], viewport: { width: 1180, height: 820 } } },
+    { name: 'ipad', use: { ...devices['iPad Pro 11 landscape'] } },
   ],
   webServer: {
     command: `node tests/serve.mjs ${PORT}`,

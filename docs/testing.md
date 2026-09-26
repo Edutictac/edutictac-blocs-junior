@@ -83,7 +83,7 @@ tests/
   unit/                     node:test, sense navegador
     content.test.mjs        traduccions ca/es/en, reptes i recursos, fitxes ↔ reptes
     build-fitxes.test.mjs   generació HTML de les fitxes (en una carpeta temporal)
-  e2e/                      Playwright (Chromium)
+  e2e/                      Playwright (Chromium, WebKit, iPad emulat)
     startup.spec.mjs        portada, lobby, privacitat, reptes a l'editor
     project.spec.mjs        crear, guardar, recarregar i obrir
     sjr.spec.mjs            exportar/importar .sjr, errors d'importació
@@ -101,7 +101,7 @@ bloquejat, perquè no servisca fitxers d'una build anterior.
 ```bash
 npm run test:unit          # ràpides, no cal build
 npm run build              # les E2E proven dist/
-npx playwright install chromium   # la primera vegada
+npx playwright install chromium webkit   # la primera vegada
 npm run test:e2e           # arranca tests/serve.mjs automàticament
 npm test                   # unit + build + e2e
 ```
@@ -136,7 +136,7 @@ Vegeu també [`compatibility.md`](compatibility.md) §4–§6. Cal provar en tau
 ## 8. Integració contínua
 
 - **GitHub Actions** (`.github/workflows/tests.yml`): `npm ci` → `npm run test:unit` →
-  `npm run build` → `npm run test:e2e` (Chromium) a cada `push` i `pull_request`.
+  `npm run build` → `npm run test:e2e` (Chromium, WebKit i iPad emulat) a cada `push` i `pull_request`.
 - Pendent: `npm run lint` (configuració d'ESLint per migrar), Firefox/WebKit i `npm audit`.
 
 ## 9. Comandes
