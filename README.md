@@ -8,8 +8,8 @@ dins de l'ecosistema EduTicTac.
 
 ## Estat
 
-**Fases 1 i 2 completades.** Encara no hi ha codi d'aplicació: primer es documenta i es
-decideix l'arquitectura. La implementació del MVP (0.1) és la fase següent.
+**Fase 3 (MVP 0.1) en curs.** Ja hi ha una base funcional: aplicació web sense Electron,
+amb `sql.js` + IndexedDB, lobby, creació de projectes i editor.
 
 Fase 1 — auditoria:
 
@@ -51,3 +51,37 @@ Vegeu [`docs/licenses.md`](docs/licenses.md) per a les obligacions de llicència
 El codi nou d'EduTicTac es distribueix sota **AGPL-3.0**. El codi heretat de ScratchJr
 conserva la seua llicència **BSD-3-Clause** de MIT. Vegeu [`LICENSE`](LICENSE) i
 [`NOTICE`](NOTICE).
+
+## Desenvolupament
+
+Requisits: Node.js 22+ i npm.
+
+```bash
+npm install
+npm run dev      # servidor de desenvolupament (port 3002)
+npm run build    # build de producció a dist/
+```
+
+L'aplicació és 100% al navegador: no hi ha backend. Els projectes es guarden a
+**IndexedDB** del dispositiu.
+
+## Desplegament amb Docker
+
+```bash
+cp .env.example .env
+docker compose up -d
+```
+
+- Port per defecte: `BLOCS_JUNIOR_PORT=8091`.
+- Funciona darrere de nginx, Traefik o Caddy (vegeu `docs/deployment.md`).
+- Destí previst: `blocs-junior.edutictac.es`.
+
+## Estructura
+
+- `src/app/` — codi heretat de ScratchJr-Desktop (editor, pintor, lobby, assets, i18n).
+- `src/web/` — codi EduTicTac: interficie web (`tabletInterface`), magatzem
+  (`sql.js` + IndexedDB), identitat (`brand`).
+- `src/junior-entry.js` — punt d'entrada.
+- `docs/` — documentació.
+- `docker/` — configuració d'nginx.
+

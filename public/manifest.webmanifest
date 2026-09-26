@@ -1,0 +1,20 @@
+{
+  "name": "EduTicTac Blocs Junior",
+  "short_name": "Blocs Junior",
+  "description": "Entorn lliure de programacio visual per a Educacio Infantil i primers cursos de Primaria.",
+  "start_url": "home.html",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#f5f2f7",
+  "theme_color": "#2b8a3e",
+  "lang": "ca",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

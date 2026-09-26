@@ -1,0 +1,7 @@
+services:
+  blocs-junior:
+    build: .
+    image: edutictac/blocs-junior:0.1
+    restart: unless-stopped
+    ports:
+      - "${BLOCS_JUNIOR_PORT:-8091}:80"

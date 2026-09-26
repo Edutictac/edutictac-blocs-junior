@@ -1,0 +1,27 @@
+{
+  "name": "edutictac-blocs-junior",
+  "version": "0.1.0",
+  "description": "Entorn lliure de programacio visual per a Educacio Infantil i primers cursos de Primaria, basat en ScratchJr",
+  "license": "AGPL-3.0",
+  "private": true,
+  "scripts": {
+    "dev": "webpack serve --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "dependencies": {
+    "blueimp-md5": "^2.19.0",
+    "intl": "^1.2.5",
+    "intl-messageformat": "^2.2.0",
+    "jszip": "^3.10.1",
+    "snapsvg-cjs": "^0.0.6",
+    "sql.js": "^1.13.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^12.0.2",
+    "html-webpack-plugin": "^5.6.3",
+    "terser-webpack-plugin": "^5.3.11",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.0"
+  }
+}
