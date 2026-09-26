@@ -11,6 +11,10 @@ dins de l'ecosistema EduTicTac.
 **Fase 3 (MVP 0.1) en curs.** Ja hi ha una base funcional: aplicació web sense Electron,
 amb `sql.js` + IndexedDB, lobby, creació de projectes i editor.
 
+> **Compatibilitat:** funciona en Android i en navegadors d'escriptori (Chromium, Firefox).
+> **De moment no és compatible amb Safari (iPad/Mac).** Detalls a
+> [`docs/compatibility.md`](docs/compatibility.md).
+
 Fase 1 — auditoria:
 
 - [`docs/audit.md`](docs/audit.md) — auditoria tècnica dels quatre projectes originals.
