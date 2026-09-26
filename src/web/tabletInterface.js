@@ -46,29 +46,18 @@ function syncGetText(url) {
   return null;
 }
 
-function arrayBufferToBase64(buffer) {
-  const bytes = new Uint8Array(buffer);
-  let binary = '';
-  const chunk = 0x8000;
-  for (let i = 0; i < bytes.length; i += chunk) {
-    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+// junior: els sons de biblioteca es carreguen amb l'element Audio directament
+// (URL), evitant XHR sincron binari, que WebKit/Safari prohibeix.
+function librarySoundCandidates(name) {
+  const candidates = [];
+  if (name.indexOf('/') > -1) {
+    candidates.push(name);
+    candidates.push(name.replace(/^HTML5\//, ''));
+  } else {
+    candidates.push(`sounds/${name}`);
+    candidates.push(`samples/${name}`);
   }
-  return btoa(binary);
-}
-
-function syncGetBase64(url) {
-  try {
-    const request = new XMLHttpRequest();
-    request.open('GET', url, false);
-    request.responseType = 'arraybuffer';
-    request.send(null);
-    if (request.status === 0 || request.status === 200) {
-      return arrayBufferToBase64(request.response);
-    }
-  } catch (e) {
-    // silenci: pot ser un recurs opcional
-  }
-  return null;
+  return candidates;
 }
 
 function audioMimeFor(name) {
@@ -154,14 +143,9 @@ const webBackend = {
     if (fromDb) {
       return `data:${audioMimeFor(name)};base64,${fromDb}`;
     }
-    const candidates = [`samples/${name}`, `sounds/${name}`];
-    for (let i = 0; i < candidates.length; i++) {
-      const data = syncGetBase64(candidates[i]);
-      if (data) {
-        return `data:${audioMimeFor(name)};base64,${data}`;
-      }
-    }
-    return null;
+    // Biblioteca: tornem una URL; l'element Audio la carregara (amb fallback).
+    const candidates = librarySoundCandidates(name);
+    return candidates[0] || null;
   }
 };
 
@@ -288,9 +272,32 @@ class ElectronDesktopInterface {
 
   io_registersound(dir, name) {
     if (!this.currentAudio[name]) {
-      let dataUri = ipcRenderer.sendSync("io_getAudioData", name);
-      this.loadSoundFromDataURI(name, dataUri);
+      const fromDb = readProjectFile(name);
+      if (fromDb) {
+        this.loadSoundFromDataURI(name, `data:${audioMimeFor(name)};base64,${fromDb}`);
+      } else {
+        // Biblioteca: provem les rutes candidates fins que una carrega.
+        const candidates = librarySoundCandidates(name);
+        this.loadSoundFromCandidates(name, candidates, 0);
+      }
     }
+  }
+
+  loadSoundFromCandidates(name, candidates, index) {
+    if (index >= candidates.length) {
+      debugLog("io_registersound: no s'ha pogut carregar el so", name);
+      return;
+    }
+    const audio = new window.Audio();
+    audio.volume = 0.8;
+    audio.onended = function () {
+      iOS.soundDone(name); // eslint-disable-line no-undef
+    };
+    audio.onerror = () => {
+      this.loadSoundFromCandidates(name, candidates, index + 1);
+    };
+    this.currentAudio[name] = audio;
+    audio.src = candidates[index];
   }
 
   loadSoundFromDataURI(name, dataUri) {

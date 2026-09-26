@@ -4,6 +4,9 @@
 import './web/tabletInterface.js';
 import './app/appEntry.js';
 import brand from './web/brand/brand.js';
+import { installTouchShim } from './web/touchShim.js';
+
+installTouchShim();
 
 document.title = brand.name;
 
