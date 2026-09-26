@@ -52,3 +52,15 @@ test('el botó Reptes de la portada obri la pestanya Reptes', async ({ page }) =
   await expect(page.locator('#reptestab')).toHaveClass(/on/);
   expect(w.errors).toEqual([]);
 });
+
+test('si IndexedDB no respon, el lobby arranca igualment i avisa', async ({ page }) => {
+  const w = await watch(page);
+  // simula el penjament de WebKit: indexedDB.open no crida mai cap callback
+  await page.addInitScript(() => {
+    IDBFactory.prototype.open = () => ({});
+  });
+  await page.goto('home.html');
+  await expect(page.locator('#newproject')).toBeVisible({ timeout: 25000 });
+  await expect(page.locator('#nostoragewarning')).toBeVisible();
+  expect(w.errors).toEqual([]);
+});

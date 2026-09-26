@@ -3,7 +3,8 @@
 // Aixi, quan hi ha xarxa sempre s'obte la versio desplegada mes recent i,
 // quan no n'hi ha, l'aplicacio continua funcionant des de la cau.
 // Canviar CACHE quan es vulga invalidar forcadament tota la cau.
-const CACHE = 'blocsjunior-v0.1.18';
+const CACHE = 'blocsjunior-v0.1.19';
+const NETWORK_TIMEOUT = 6000;
 const CORE = [
   './',
   'index.html',
@@ -38,13 +39,20 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
+  const network = fetch(request).then((response) => {
+    if (response && response.status === 200 && response.type === 'basic') {
+      const copy = response.clone();
+      caches.open(CACHE).then((cache) => cache.put(request, copy));
+    }
+    return response;
+  });
+  // si la xarxa es penja (VPN, wifi dolenta), passat un temps es serveix la
+  // copia de la cau; sense copia, es continua esperant la xarxa
+  const slow = new Promise((resolve) => setTimeout(resolve, NETWORK_TIMEOUT))
+    .then(() => caches.match(request))
+    .then((hit) => hit || network);
   event.respondWith(
-    fetch(request).then((response) => {
-      if (response && response.status === 200 && response.type === 'basic') {
-        const copy = response.clone();
-        caches.open(CACHE).then((cache) => cache.put(request, copy));
-      }
-      return response;
-    }).catch(() => caches.match(request).then((hit) => hit || caches.match('home.html')))
+    Promise.race([network, slow])
+      .catch(() => caches.match(request).then((hit) => hit || caches.match('home.html')))
   );
 });

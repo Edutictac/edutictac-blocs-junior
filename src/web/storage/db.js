@@ -13,6 +13,13 @@ let SQL = null;
 let db = null;
 let ready = false;
 let saveTimer = null;
+// false si IndexedDB no respon: l'aplicacio funciona pero no desa res, per no
+// sobreescriure mai amb una base de dades buida els projectes ja guardats
+let persist = true;
+
+function log(msg) {
+  if (typeof window !== 'undefined' && window.__juniorLog) window.__juniorLog(msg);
+}
 
 function initTables() {
   db.exec('CREATE TABLE IF NOT EXISTS PROJECTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, CTIME DATETIME DEFAULT CURRENT_TIMESTAMP, MTIME DATETIME, ALTMD5 TEXT, POS INTEGER, NAME TEXT, JSON TEXT, THUMBNAIL TEXT, OWNER TEXT, GALLERY TEXT, DELETED TEXT, VERSION TEXT)\n');
@@ -31,9 +38,18 @@ function runMigrations() {
 
 export async function initDb() {
   if (ready) return;
+  log('sql.js loading');
   SQL = await initSqlJs({ locateFile: () => 'sql-wasm.wasm' });
+  log('sql.js ready, opening IndexedDB');
 
-  const stored = await idbGet(DB_KEY);
+  let stored = null;
+  try {
+    stored = await idbGet(DB_KEY);
+  } catch (e) {
+    persist = false;
+    log('IndexedDB unavailable (' + ((e && e.message) || e) + '), running without saving');
+    console.warn('Blocs Junior: IndexedDB no disponible, els canvis no es desaran', e);
+  }
   let isNew = false;
   if (stored) {
     db = new SQL.Database(new Uint8Array(stored));
@@ -139,8 +155,12 @@ export function exportDatabase() {
   return db.export();
 }
 
+export function isPersistent() {
+  return persist;
+}
+
 export async function saveNow() {
-  if (!ready) return;
+  if (!ready || !persist) return;
   if (saveTimer) {
     clearTimeout(saveTimer);
     saveTimer = null;
@@ -154,7 +174,7 @@ export async function saveNow() {
 }
 
 export function markDirty() {
-  if (!ready) return;
+  if (!ready || !persist) return;
   if (saveTimer) clearTimeout(saveTimer);
   saveTimer = setTimeout(() => { saveNow(); }, SAVE_DELAY);
 }

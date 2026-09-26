@@ -30,6 +30,7 @@ import {
   removeProjectFile,
   cleanProjectFiles,
   initDb,
+  isPersistent,
   saveNow
 } from './storage/db.js';
 
@@ -1063,6 +1064,28 @@ async function startTabletInterface() {
   // Buida la base de dades a IndexedDB abans de canviar de pagina (vegeu iOS.gotoPage).
   window.tablet.flushStorage = saveNow;
   window.__blocsJuniorReady = true;
+  if (!isPersistent()) showNoStorageWarning();
+}
+
+// Avis visible quan el navegador no deixa desar (IndexedDB no respon).
+function showNoStorageWarning() {
+  const texts = {
+    ca: 'Aquest navegador no deixa desar: els projectes es perdran en tancar. Prova de recarregar o usa un altre navegador.',
+    es: 'Este navegador no permite guardar: los proyectos se perderán al cerrar. Prueba a recargar o usa otro navegador.',
+    en: 'This browser cannot save: projects will be lost when closed. Try reloading or use another browser.'
+  };
+  let lang = 'ca';
+  try { lang = localStorage.getItem('localization') || 'ca'; } catch (e) { /* sense emmagatzematge */ }
+  const show = () => {
+    const bar = document.createElement('div');
+    bar.id = 'nostoragewarning';
+    bar.textContent = texts[lang] || texts.ca;
+    bar.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:2147483646;padding:8px 40px 8px 12px;' +
+      'background:#c0392b;color:#fff;font:bold 15px sans-serif;text-align:center';
+    bar.onclick = () => bar.remove();
+    document.body.appendChild(bar);
+  };
+  if (document.body) show(); else document.addEventListener('DOMContentLoaded', show);
 }
 
 startTabletInterface().catch((error) => {
