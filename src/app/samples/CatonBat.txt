@@ -79,8 +79,8 @@
         },
         "Cat 2": {
           "homeflip": false,
-          "cy": 116,
-          "cx": 83,
+          "cy": 126,
+          "cx": 75,
           "sounds": [
             "pop.mp3"
           ],
@@ -124,15 +124,15 @@
               ]
             ]
           ],
-          "md5": "Cat.svg",
-          "name": "Cat",
+          "md5": "JuniorBot.svg",
+          "name": "Junior",
           "ycoor": 171,
           "homex": 124,
           "homey": 171,
           "flip": false,
           "homescale": 0.5,
-          "w": 166,
-          "h": 232,
+          "w": 151,
+          "h": 253,
           "xcoor": 124,
           "homeshown": true,
           "defaultScale": 0.5
@@ -236,8 +236,8 @@
         "num": 1,
         "Cat 1": {
           "homeflip": false,
-          "cy": 116,
-          "cx": 83,
+          "cy": 126,
+          "cx": 75,
           "sounds": [
             "pop.mp3"
           ],
@@ -287,15 +287,15 @@
               ]
             ]
           ],
-          "md5": "Cat.svg",
-          "name": "Cat",
+          "md5": "JuniorBot.svg",
+          "name": "Junior",
           "ycoor": 195,
           "homex": 232,
           "homey": 195,
           "flip": false,
           "homescale": 0.7,
-          "w": 166,
-          "h": 232,
+          "w": 151,
+          "h": 253,
           "xcoor": 232,
           "homeshown": true,
           "defaultScale": 0.5
