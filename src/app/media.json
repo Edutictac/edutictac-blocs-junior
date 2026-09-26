@@ -2,6 +2,7 @@
     "path": "./svglibrary/",
     "samples": [
         "samples/JuniorWalks.txt",
+        "samples/JuniorDances.txt",
         "samples/Underthesea.txt",
         "samples/Farm.txt",
         "samples/Seasons.txt",

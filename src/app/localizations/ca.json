@@ -380,5 +380,8 @@
     "SAMPLE_Junior walks": "1. Junior camina",
     "SAMPLE_TEXT_key_character_junior": "Junior",
     "SAMPLE_TEXT_key_junior_walk_goal": "Porta Junior fins a la poma!",
-    "SAMPLE_TEXT_key_character_apple": "Poma"
+    "SAMPLE_TEXT_key_character_apple": "Poma",
+    "SAMPLE_Junior dances": "2. Junior balla",
+    "SAMPLE_TEXT_key_junior_dance_goal": "Fes que Junior balle com Tac!",
+    "SAMPLE_TEXT_key_character_tac": "Tac"
 }

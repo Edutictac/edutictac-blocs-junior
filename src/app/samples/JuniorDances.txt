@@ -1,0 +1,157 @@
+[
+ {
+  "gallery": "samples",
+  "name": "Junior dances",
+  "version": "iOSv01",
+  "deleted": "NO",
+  "pos": 1,
+  "altmd5": "edutictac-junior-dances-01",
+  "json": {
+   "currentPage": "page 1",
+   "pages": [
+    "page 1"
+   ],
+   "page 1": {
+    "layers": [
+     "Tac 1",
+     "Junior 1",
+     "Text 1"
+    ],
+    "lastSprite": "Junior 1",
+    "textstartat": 84,
+    "num": 1,
+    "Junior 1": {
+     "homeflip": false,
+     "cy": 126,
+     "cx": 76,
+     "sounds": [
+      "pop.mp3"
+     ],
+     "speed": 2,
+     "id": "Junior 1",
+     "shown": true,
+     "scale": 0.5,
+     "angle": 0,
+     "type": "sprite",
+     "scripts": [
+      [
+       [
+        "onflag",
+        "null",
+        60,
+        40
+       ],
+       [
+        "hop",
+        2,
+        125,
+        40
+       ],
+       [
+        "right",
+        3,
+        190,
+        40
+       ]
+      ]
+     ],
+     "md5": "JuniorBot.svg",
+     "name": "key_character_junior",
+     "ycoor": 250,
+     "homex": 150,
+     "homey": 250,
+     "flip": false,
+     "homescale": 0.5,
+     "w": 151,
+     "h": 253,
+     "xcoor": 150,
+     "homeshown": true,
+     "defaultScale": 0.5
+    },
+    "Tac 1": {
+     "homeflip": false,
+     "cy": 92,
+     "cx": 80,
+     "sounds": [
+      "pop.mp3"
+     ],
+     "speed": 2,
+     "id": "Tac 1",
+     "shown": true,
+     "scale": 0.5,
+     "angle": 0,
+     "type": "sprite",
+     "scripts": [
+      [
+       [
+        "onflag",
+        "null",
+        60,
+        56
+       ],
+       [
+        "repeat",
+        4,
+        133,
+        40.4,
+        [
+         [
+          "hop",
+          2,
+          168,
+          56
+         ],
+         [
+          "right",
+          3,
+          233,
+          56
+         ]
+        ]
+       ]
+      ]
+     ],
+     "md5": "Purple.svg",
+     "name": "key_character_tac",
+     "ycoor": 262,
+     "homex": 330,
+     "homey": 262,
+     "flip": false,
+     "homescale": 0.5,
+     "w": 161,
+     "h": 185,
+     "xcoor": 330,
+     "homeshown": true,
+     "defaultScale": 0.5
+    },
+    "Text 1": {
+     "shown": true,
+     "type": "text",
+     "id": "Text 1",
+     "speed": 2,
+     "cx": 200,
+     "cy": 24,
+     "w": 400,
+     "h": 48,
+     "xcoor": 240,
+     "ycoor": 88,
+     "homex": 240,
+     "homey": 88,
+     "str": "key_junior_dance_goal",
+     "color": "rgb(40, 40, 90)",
+     "fontsize": 22
+    },
+    "sprites": [
+     "Junior 1",
+     "Tac 1",
+     "Text 1"
+    ],
+    "md5": "Theatre.svg"
+   }
+  },
+  "thumbnail": {
+   "pagecount": 1,
+   "md5": "samples/JuniorDances.png"
+  }
+ }
+]
