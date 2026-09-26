@@ -399,5 +399,9 @@
     "SAMPLE_TEXT_key_story_hi": "Hi, Tic!",
     "SAMPLE_TEXT_key_story_beach": "Let's go to the beach!",
     "SAMPLE_TEXT_key_story_p3": "Make up the ending yourself!",
+    "SAMPLE_Junior race": "6. The race",
+    "SAMPLE_TEXT_key_race_goal": "Change Tic's speed so it wins!",
+    "SAMPLE_TEXT_key_race_go": "Go!",
+    "SAMPLE_TEXT_key_race_arrived": "I made it!",
     "SAMPLE_TEXT_key_character_tac": "Tac"
 }

@@ -399,5 +399,9 @@
     "SAMPLE_TEXT_key_story_hi": "Hola, Tic!",
     "SAMPLE_TEXT_key_story_beach": "Anem a la platja!",
     "SAMPLE_TEXT_key_story_p3": "Inventa tu el final del conte!",
+    "SAMPLE_Junior race": "6. La cursa",
+    "SAMPLE_TEXT_key_race_goal": "Canvia la velocitat de Tic perquè guanye!",
+    "SAMPLE_TEXT_key_race_go": "Ja!",
+    "SAMPLE_TEXT_key_race_arrived": "He arribat!",
     "SAMPLE_TEXT_key_character_tac": "Tac"
 }
