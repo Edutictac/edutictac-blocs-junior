@@ -14,8 +14,21 @@ export function libInit () {
     frame = document.getElementById('frame');
 }
 /**
- * Takes a string and evaluates all ${} as JavaScript and returns the resulting string.
+ * Takes a string and resolves all ${} placeholders and returns the resulting string.
+ * junior: no fem servir eval (CSP estricta). Suportem la xicoteta gramatica que
+ * utilitzen els CSS/HTML propis: css_vh(n), css_vw(n), scaleMultiplier i n * scaleMultiplier.
  */
+function evalCssExpression (expr) {
+    var e = expr.trim();
+    var m;
+    if ((m = /^css_vh\(\s*(-?\d*\.?\d+)\s*\)$/.exec(e))) { return css_vh(parseFloat(m[1])); }
+    if ((m = /^css_vw\(\s*(-?\d*\.?\d+)\s*\)$/.exec(e))) { return css_vw(parseFloat(m[1])); }
+    if (e === 'scaleMultiplier') { return scaleMultiplier; }
+    if (e === '-scaleMultiplier') { return -scaleMultiplier; }
+    if ((m = /^(-?\d*\.?\d+)\s*\*\s*scaleMultiplier$/.exec(e))) { return parseFloat(m[1]) * scaleMultiplier; }
+    return '';
+}
+
 export function preprocess (s) {
     var result = '';
     var len = s.length;
@@ -29,7 +42,7 @@ export function preprocess (s) {
             var end = s.indexOf('}', start);
             if (end != -1) {
                 var expression = s.substring(start, end);
-                result += eval(expression);  // eslint-disable-line no-eval
+                result += evalCssExpression(expression);
                 i = end + 1;
             } else {
                 result += '$';
