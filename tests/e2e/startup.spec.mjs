@@ -41,3 +41,14 @@ for (const tpl of media.challenges) {
     expect(w.external).toEqual([]);
   });
 }
+
+test('el botó Reptes de la portada obri la pestanya Reptes', async ({ page }) => {
+  const w = await watch(page);
+  await page.goto('index.html?back=yes');
+  await expect(page.locator('#startreptes')).toBeVisible();
+  await page.dispatchEvent('#startreptes', 'mousedown');
+  await page.waitForURL(/place=reptes/);
+  await expect(page.locator('.cards, #wrapc').first()).toBeVisible();
+  await expect(page.locator('#reptestab')).toHaveClass(/on/);
+  expect(w.errors).toEqual([]);
+});

@@ -8,6 +8,7 @@ import AppUsage from '../utils/AppUsage';
 export function indexMain () { // eslint-disable-line import/prefer-default-export
     gn('gettings').onmousedown = indexGettingstarted;
     gn('startcode').onmousedown = indexGohome;
+    gn('startreptes').onmousedown = indexReptes;
     ScratchAudio.init();
     var urlvars = getUrlVars();
     if (urlvars.back) {
@@ -93,6 +94,7 @@ function indexLoadStart (afterUsage) {
     }
     gn('gettings').className = 'gettings show';
     gn('startcode').className = 'startcode show';
+    gn('startreptes').className = 'startreptes show';
     document.onmousemove = function (e) {
         e.preventDefault();
     };
@@ -155,6 +157,12 @@ function indexGoSettings () {
     // Triggered by tapping the gear icon in the top right
     ScratchAudio.sndFX('tap.wav');
     window.location.href = 'home.html?place=gear';
+}
+
+// junior: la portada porta directament a la pestanya Reptes
+function indexReptes () {
+    ScratchAudio.sndFX('tap.wav');
+    window.location.href = 'home.html?place=reptes';
 }
 
 function indexGettingstarted () {

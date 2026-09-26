@@ -121,7 +121,7 @@ div.frame {
 .gettings {
     position: absolute;
     top: 65%;
-    left: 59%;
+    left: 69%;
     margin: 0px;
     width: 17%;
     height: 22%;
@@ -165,7 +165,7 @@ div.frame {
 .startcode {
     position: absolute;
     top: 65%;
-    left: 24%;
+    left: 14%;
     margin: 0px;
     width: 17%;
     height: 22%;
@@ -345,3 +345,31 @@ div.frame {
 .credits, .creditsText, .purple, .red, .blue, .catlogo, .catface {
     display: none !important;
 }
+
+/* junior: tercer botó de la portada, obri la pestanya Reptes */
+.startreptes {
+    position: absolute;
+    top: 65%;
+    left: 41.5%;
+    margin: 0px;
+    width: 17%;
+    height: 22%;
+    min-width: 150px;
+    min-height: 150px;
+    background: url('../assets/start/reptesOn.svg');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position-x: center;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 1000;
+}
+
+.startreptes:active {
+    background: url('../assets/start/reptesOff.svg');
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position-x: center;
+}
+
+.startreptes.hide {display: none;}
+.startreptes.show {display: block;}
