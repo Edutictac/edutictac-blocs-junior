@@ -376,5 +376,9 @@
     "USAGE_HOME": "Casa",
     "USAGE_OTHER": "Altres",
     "USAGE_NONE": "No preguntar-ho més",
-    "CHARACTER_JuniorBot.svg": "Junior"
+    "CHARACTER_JuniorBot.svg": "Junior",
+    "SAMPLE_Junior walks": "1. Junior camina",
+    "SAMPLE_TEXT_key_character_junior": "Junior",
+    "SAMPLE_TEXT_key_junior_walk_goal": "Porta Junior fins a la poma!",
+    "SAMPLE_TEXT_key_character_apple": "Poma"
 }

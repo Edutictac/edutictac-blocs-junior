@@ -520,9 +520,12 @@ div.localizationselect.selected:after {
     left: 3.6%;
     margin: 0px auto;
     padding: 10px 0 0;
-    width: 100%;
+    width: 96.4%;
     height: 62.4%;
-    overflow: hidden;
+    /* junior: mes de 8 exemples (plantilles docents) -> graella amb desplacament vertical */
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .htmlcontents.help .samples.off {display: none;}

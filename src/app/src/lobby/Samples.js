@@ -93,7 +93,7 @@ export default class Samples {
         tb.setAttribute('id', 'sample-' + pos);
         tb.md5 = md5;
         tb.type = 'samplethumb';
-        var mt = newHTML('div', 'thumb pos' + pos, tb);
+        var mt = newHTML('div', 'thumb pos' + (pos % 8), tb); // junior: la inclinacio es repeteix cada 8
         newHTML('div', 'woodframe', mt);
         newHTML('div', 'sampleicon', mt);
         var name = newHTML('p', undefined, tb);

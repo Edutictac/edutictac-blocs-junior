@@ -68,7 +68,7 @@
 
 .samplethumb {
     display: inline-block;
-    position: absolute;
+    position: relative;
     margin: ${8 * scaleMultiplier}px ${2 * scaleMultiplier}px 0;
     padding: 0px;
     width: 23.2%;
@@ -125,14 +125,7 @@
     background-position-y: center;
 }
 
-.samplethumb#sample-0 { left:    ${css_vw(0)}; top:   ${css_vh(0)}; }
-.samplethumb#sample-1 { left: ${css_vw(23.2)}; top:   ${css_vh(0)}; }
-.samplethumb#sample-2 { left: ${css_vw(46.4)}; top:   ${css_vh(0)}; }
-.samplethumb#sample-3 { left: ${css_vw(68.6)}; top:   ${css_vh(0)}; }
-.samplethumb#sample-4 { left:    ${css_vw(0)}; top:  ${css_vh(28)}; }
-.samplethumb#sample-5 { left: ${css_vw(23.2)}; top:  ${css_vh(28)}; }
-.samplethumb#sample-6 { left: ${css_vw(46.4)}; top:  ${css_vh(28)}; }
-.samplethumb#sample-7 { left: ${css_vw(68.6)}; top:  ${css_vh(28)}; }
+/* junior: posicio per flux (inline-block), no per id: admet qualsevol nombre d'exemples */
 
 .samplethumb .thumb.pos0 { -webkit-transform: rotateZ(-1deg);}
 .samplethumb .thumb.pos1 { -webkit-transform: rotateZ(0.5deg);}

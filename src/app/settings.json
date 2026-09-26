@@ -1,7 +1,7 @@
 {
     "edition": "free",
     "scratchJrVersion": "iOSv01",
-    "useStoryStarters": false,
+    "useStoryStarters": true,
     "shareEnabled": false,
     "defaultSprite": "JuniorBot.svg",
     "spriteOutlineColor": "white",

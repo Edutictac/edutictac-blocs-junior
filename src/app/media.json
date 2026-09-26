@@ -1,6 +1,7 @@
 {
     "path": "./svglibrary/",
     "samples": [
+        "samples/JuniorWalks.txt",
         "samples/Underthesea.txt",
         "samples/Farm.txt",
         "samples/Seasons.txt",

@@ -376,5 +376,9 @@
     "USAGE_HOME": "Home",
     "USAGE_OTHER": "Other",
     "USAGE_NONE": "Don't ask again",
-    "CHARACTER_JuniorBot.svg": "Junior"
+    "CHARACTER_JuniorBot.svg": "Junior",
+    "SAMPLE_Junior walks": "1. Junior walks",
+    "SAMPLE_TEXT_key_character_junior": "Junior",
+    "SAMPLE_TEXT_key_junior_walk_goal": "Take Junior to the apple!",
+    "SAMPLE_TEXT_key_character_apple": "Apple"
 }
