@@ -1,9 +1,9 @@
-// junior: pont tactil per a iOS Safari.
+// junior: pont tactil (iOS, Android i qualsevol pantalla tactil).
 //
 // El codi hereditat de ScratchJr escolta events de ratoli (onmousedown /
-// onmousemove / onmouseup). A iOS Safari els events de ratoli sintetitzats no
-// s'emeten de manera fiable sobre elements que no siguen enllacos/botons, de
-// manera que la interficie no respon al toc. Este modul tradueix els gestos
+// onmousemove / onmouseup). Els navegadors tactils nomes sintetitzen events de
+// ratoli per a un toc (i iOS Safari ni tan sols de manera fiable), mai per a un
+// arrossegament, de manera que sense este pont no es poden moure blocs. Este modul tradueix els gestos
 // d'un sol dit a events de ratoli equivalents.
 //
 // Dos modes:
@@ -72,19 +72,15 @@ function dispatchMouse(target, type, touch) {
   target.dispatchEvent(event);
 }
 
-function isIOSSafari() {
-  const ua = navigator.userAgent;
-  const iOS = /iP(hone|od|ad)/.test(ua) ||
-    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  const webkit = /AppleWebKit/.test(ua);
-  return iOS && webkit;
+function hasTouch() {
+  return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 }
 
 export function installTouchShim() {
   const forced = window.__forceTouchShim ||
     (typeof location !== 'undefined' && /[?&]touchshim=1/.test(location.search));
-  if (!forced && !isIOSSafari()) return false;
-  if (!('ontouchstart' in window) && !forced) return false;
+  // Nomes intercepta events tactils: en portatils amb pantalla tactil el ratoli continua igual.
+  if (!forced && !hasTouch()) return false;
 
   let active = null;
 

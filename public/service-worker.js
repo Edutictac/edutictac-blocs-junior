@@ -3,7 +3,7 @@
 // Aixi, quan hi ha xarxa sempre s'obte la versio desplegada mes recent i,
 // quan no n'hi ha, l'aplicacio continua funcionant des de la cau.
 // Canviar CACHE quan es vulga invalidar forcadament tota la cau.
-const CACHE = 'blocsjunior-v0.1.2';
+const CACHE = 'blocsjunior-v0.1.3';
 const CORE = [
   './',
   'index.html',
