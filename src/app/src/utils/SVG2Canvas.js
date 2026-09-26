@@ -315,6 +315,30 @@ export default class SVG2Canvas {
         var y = Number(shape.getAttribute('y'));
         var w = Number(shape.getAttribute('width'));
         var h = Number(shape.getAttribute('height'));
+        // junior: respecta les cantonades arrodonides (rx/ry); si no, la vora blanca del
+        // personatge ix quadrada i es veu un rectangle blanc al voltant
+        var rx = shape.getAttribute('rx');
+        var ry = shape.getAttribute('ry');
+        if (rx != null || ry != null) {
+            rx = Math.min(Number(rx != null ? rx : ry), w / 2);
+            ry = Math.min(Number(ry != null ? ry : rx), h / 2);
+            if (rx > 0 && ry > 0) {
+                ctx.beginPath();
+                ctx.ellipse(x + w - rx, y + ry, rx, ry, 0, -Math.PI / 2, 0);
+                ctx.ellipse(x + w - rx, y + h - ry, rx, ry, 0, 0, Math.PI / 2);
+                ctx.ellipse(x + rx, y + h - ry, rx, ry, 0, Math.PI / 2, Math.PI);
+                ctx.ellipse(x + rx, y + ry, rx, ry, 0, Math.PI, Math.PI * 1.5);
+                ctx.closePath();
+                if (ctx.fillStyle && (ctx.fillStyle != 'rgba(0, 0, 0,0)')) {
+                    ctx.fill();
+                }
+                if (ctx.strokeStyle && (ctx.strokeStyle != 'rgba(0, 0, 0,0)')) {
+                    ctx.stroke();
+                }
+                ctx.restore();
+                return;
+            }
+        }
         if (ctx.strokeStyle && (ctx.strokeStyle != 'rgba(0, 0, 0,0)')) {
             ctx.strokeRect(x, y, w, h);
         }
