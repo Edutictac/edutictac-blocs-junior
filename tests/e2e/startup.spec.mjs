@@ -64,3 +64,16 @@ test('si IndexedDB no respon, el lobby arranca igualment i avisa', async ({ page
   await expect(page.locator('#nostoragewarning')).toBeVisible();
   expect(w.errors).toEqual([]);
 });
+
+test('si una lectura d\'IndexedDB es penja, l\'editor arranca igualment i avisa', async ({ page }) => {
+  const w = await watch(page);
+  // Safari en navegació privada: open() respon però la transacció no acaba mai
+  await page.addInitScript(() => {
+    IDBObjectStore.prototype.get = () => ({});
+  });
+  await page.goto('editor.html?pmd5=samples/JuniorWalks.txt&mode=storyStarter');
+  // l'avís arriba després del temps màxim de lectura (5 s)
+  await expect(page.locator('#nostoragewarning')).toBeVisible({ timeout: 25000 });
+  await waitEditor(page);
+  expect(w.errors).toEqual([]);
+});

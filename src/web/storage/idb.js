@@ -6,6 +6,9 @@ const STORE = 'app';
 const VERSION = 1;
 
 const OPEN_TIMEOUT = 5000;
+// Safari (sobretot en navegació privada) pot obrir la base de dades i després
+// no respondre mai a una transacció: limitem també les lectures i escriptures.
+const TX_TIMEOUT = 5000;
 
 let dbPromise = null;
 
@@ -40,7 +43,7 @@ function openOnce() {
         db.createObjectStore(STORE);
       }
     };
-    request.onsuccess = () => done(resolve, request.result);
+    request.onsuccess = () => { log('idb open ok'); done(resolve, request.result); };
     request.onerror = () => done(reject, request.error);
     request.onblocked = () => log('idb open blocked');
   });
@@ -60,8 +63,16 @@ function open() {
   return dbPromise;
 }
 
+function withTimeout(promise, what) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error('indexedDB ' + what + ' timeout')), TX_TIMEOUT);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
+
 function tx(mode, fn) {
-  return open().then((db) => new Promise((resolve, reject) => {
+  return withTimeout(open().then((db) => new Promise((resolve, reject) => {
     const transaction = db.transaction(STORE, mode);
     const store = transaction.objectStore(STORE);
     let result;
@@ -74,16 +85,17 @@ function tx(mode, fn) {
     transaction.oncomplete = () => resolve(result);
     transaction.onerror = () => reject(transaction.error);
     transaction.onabort = () => reject(transaction.error);
-  }));
+  })), mode);
 }
 
 export function idbGet(key) {
-  return open().then((db) => new Promise((resolve, reject) => {
+  return withTimeout(open().then((db) => new Promise((resolve, reject) => {
     const transaction = db.transaction(STORE, 'readonly');
     const request = transaction.objectStore(STORE).get(key);
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => reject(request.error);
-  }));
+    transaction.onabort = () => reject(transaction.error);
+  })), 'read');
 }
 
 export function idbSet(key, value) {
