@@ -1080,7 +1080,7 @@ function showNoStorageWarning() {
     const bar = document.createElement('div');
     bar.id = 'nostoragewarning';
     bar.textContent = texts[lang] || texts.ca;
-    bar.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:2147483646;padding:8px 40px 8px 12px;' +
+    bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:2147483646;padding:8px 40px 8px 12px;' +
       'background:#c0392b;color:#fff;font:bold 15px sans-serif;text-align:center';
     bar.onclick = () => bar.remove();
     document.body.appendChild(bar);
