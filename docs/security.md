@@ -54,8 +54,8 @@ El codi heretat construeix DOM amb `newHTML`/`innerHTML` en alguns punts i usa
 
 ```
 default-src 'self';
-script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval';
-style-src 'self' 'unsafe-inline';   ← avaluar si es pot evitar
+script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://commons.edutictac.es;
+style-src 'self' 'unsafe-inline' https://commons.edutictac.es;   ← avaluar si es pot evitar
 img-src 'self' data: blob:;
 media-src 'self' data: blob:;
 font-src 'self';
@@ -70,6 +70,9 @@ frame-ancestors 'none';
   `'unsafe-eval'` i suportat pels navegadors moderns (Chromium, Firefox 102+, Safari 16.4+).
   ⚠️ `img-src data:` i `media-src blob:` són necessaris per al funcionament; no obren la
   porta a codi arbitrari.
+  ⚠️ `https://commons.edutictac.es` en `script-src` i `style-src` només carrega l'enllaç
+  «Inici» comú (`account-embed.js` en mode `home`). No s'obri `connect-src`: eixe mode no
+  consulta cap sessió ni envia res a Commons.
   ⚠️ `'unsafe-inline'` en `script-src` és necessari per l'script inline de cada pàgina que
   defineix `window.scratchJrPage`. Es pot eliminar quan es refactore a un fitxer.
 - Evitar `innerHTML` amb dades d'usuari; usar `textContent` sempre que siga possible.
